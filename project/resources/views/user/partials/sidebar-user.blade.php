@@ -20,6 +20,8 @@
                 {{-- services  --}}
                 <li class="{{ request()->routeIs('user.my.services') ? 'active' : ''}}"><a href="{{ route('user.my.services') }}"><i class="ti-layers"></i>@lang('My Jobs')</a></li>
 
+                {{-- wishlist  --}}
+                <li class="{{ request()->routeIs('user.own.wishlist') ? 'active' : ''}}"><a href="{{ route('user.own.wishlist') }}"><i class="ti-heart"></i>@lang('My Wishlist')</a></li>
                 {{-- services  --}}
 
                 @if ($ticket = DB::table('user_contacts')->orderBy('id','desc')->where('user_id',auth()->user()->id)->orWhere('owner_id',auth()->user()->id)->first())

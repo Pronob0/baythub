@@ -21,14 +21,20 @@
                             <div class="agent-photo"><img src="{{ getPhoto($user->photo) }}" alt=""></div>
                             <div class="agent-details">
                                 <h4><a href="{{ route('user.details',$user->id) }}">{{ $user->name }}</a></h4>
+                               
                             </div>
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="details text-center mt-3">
                            
-                            <span class="d-block my-2">Based in:  {{ $user->address }}</span>
+                            <span class="d-block my-2"> <i class="fa-solid fa-location-dot"></i> {{ $user->address }}</span>
                             {{-- email verified or not --}}
+                            {{-- member since date format --}}
+                            <span class="d-block my-2">Member Since {{ $user->created_at->format('d M Y') }}</span>
+                            
+                            {{-- email verified or not --}}
+                            
 
                             <span class="d-block my-2"> @lang('Email Verified: ')
                                 @if($user->email_verified == 'Yes')

@@ -17,5 +17,17 @@ class Wishlist extends Model
         'is_job',
 
     ];
+
+    public function advert(){
+        return $this->belongsTo(Advertisement::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+
+
    
 }

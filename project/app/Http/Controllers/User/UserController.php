@@ -9,6 +9,7 @@ use App\Models\ServiceCategory;
 use App\Models\UserContact;
 use App\Models\UserOwnerConversation;
 use App\Models\Verification;
+use App\Models\Wishlist;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -81,6 +82,18 @@ class UserController extends Controller
         $ticket = UserContact::where('owner_id',$user->id)->orwhere('user_id',$user->id)->orderBy('id','DESC')->first();
         return view('user.message',compact('tickets','messages','ticket'));
 
+    }
+
+
+    public function wishlist(){
+        $wishlists = Wishlist::where('user_id',auth()->user()->id)->paginate(15);
+        return view('user.wishlist',compact('wishlists'));
+    }
+
+    public function wishlistDelete($id){
+        $wishlist = Wishlist::find($id);
+        $wishlist->delete();
+        return redirect()->back()->with('message','Wishlist deleted successfully');
     }
 
     public function postReply( Request $request, $id){
