@@ -256,6 +256,9 @@
                                 <a id="sendcontact" href="javascript:;" class="btn btn-primary btn-sm btn-rounded"><i class="fa fa-envelope"></i> @lang('Email')</a>
                                 <a href="https://api.whatsapp.com/send?phone={{ $item->user->phone }}" class="btn btn-success btn-sm btn-rounded"><i class="fa-brands fa-whatsapp"></i> @lang('Whatsapp')</a>
                             </div>
+                            <hr>
+                            {{-- view all properties  --}}
+                            <a href="{{ route('all.user.advert',$item->user->id) }}" class="btn btn-primary btn-sm btn-rounded">@lang('View All Properties')</a>
                             
 
                         </div>

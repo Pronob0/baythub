@@ -160,6 +160,12 @@ class FrontendController extends Controller
         return view('frontend.advertiseDetails', compact('item'));
     }
 
+    public function allUserAdvert($id){
+        $user = User::findOrFail($id);
+        $advert = Advertisement::where('user_id', $user->id)->get();
+        return view('frontend.allUserAdvert', compact('user', 'advert'));
+    }
+
     public function contactPropertyUser(Request $request){
         
         $validator = Validator::make($request->all(), [

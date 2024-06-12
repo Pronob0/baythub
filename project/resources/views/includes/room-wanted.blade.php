@@ -102,15 +102,14 @@
                                 $photo = explode(',',$item->photo);
                             @endphp
                                  
-                                <div><a href="javascript:;"><img src="{{ asset('assets/images/advertisement/'.$photo[0]) }}" class="img-fluid mx-auto" alt="" /></a>
-                                    <div class="listing-like-top">
-                                        <i class="fa-regular fa-heart"></i>
+                                <div><img src="{{ asset('assets/images/advertisement/'.$photo[0]) }}" class="img-fluid mx-auto" alt="" />
+                                    <div class="listing-like-top heart" data-id="{{ $item->id }}">
+                                        <i class="fa-regular fa-heart {{ $wishlist ? 'active' : ' ' }}"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                       
+
                         <div class="d-flex justify-content-between">
                         
                         {{-- <span class="property-typee">{{ $item->subcategory->name }}</span> --}}

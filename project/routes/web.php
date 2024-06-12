@@ -466,6 +466,7 @@ Route::middleware(['maintenance'])->group(function () {
     // Advertise details page 
     Route::get('/advertise/details/{id}/latest',[FrontendController::class, 'advertiseDetails'])->name('advertise.details');
 
+    Route::get('all/user/advert/{id}', [FrontendController::class, 'allUserAdvert'])->name('all.user.advert');
 
     // POST SERVICE SECTION HERE 
     Route::get('/service',[FrontendController::class, 'service'])->name('service');

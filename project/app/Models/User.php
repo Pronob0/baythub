@@ -34,7 +34,8 @@ class User extends Authenticatable
         'force_login',
         'is_verify',
         'description',
-        'skills'
+        'skills',
+        'portfolio'
     ];
 
     /**

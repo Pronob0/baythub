@@ -60,10 +60,17 @@ class UserController extends Controller
 
         }
 
-
-       
-        
-
+        if($request->hasFile('portfolio')){
+            $images = $request->file('portfolio');
+            $imageArray = array();
+            foreach($images as $image){
+                $image_name =Str::random(6). time().'.'.$image->getClientOriginalExtension();
+                $image->move('assets/images/portfolio',$image_name);
+                $imageArray[] = $image_name;
+            }
+            $input['portfolio'] = implode(',',$imageArray);
+           
+        }
         
         $user->fill($input)->save();
 

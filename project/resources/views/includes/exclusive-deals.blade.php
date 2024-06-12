@@ -99,7 +99,12 @@
                             @php
                             $photo = explode(',',$item->photo);
                             @endphp
-                            <div><a href="javascript:;"><img src="{{ asset('assets/images/advertisement/'.$photo[0]) }}" class="img-fluid mx-auto" alt="" /></a>
+                            <div><img src="{{ asset('assets/images/advertisement/'.$photo[0]) }}" class="img-fluid mx-auto" alt="" />
+                           
+                              <div class="listing-like-top heart" data-id="{{ $item->id }}">
+                                 <i class="fa-regular fa-heart {{ $wishlist ? 'active' : ' ' }}"></i>
+                             </div>
+                           
 
                               <div class="listing-like-top">
                                  <i class="fa-regular fa-heart"></i>

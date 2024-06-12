@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2024 at 07:33 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Jun 12, 2024 at 12:28 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `realestate`
+-- Database: `baythub`
 --
 
 -- --------------------------------------------------------
@@ -3944,20 +3944,21 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `description` text DEFAULT NULL,
   `skills` varchar(255) DEFAULT NULL,
-  `kyc_status` int(5) NOT NULL
+  `kyc_status` int(5) NOT NULL,
+  `portfolio` varchar(55) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `country`, `city`, `address`, `zip`, `status`, `email_verified`, `verification_link`, `password`, `balance`, `is_plan`, `is_verify`, `remember_token`, `created_at`, `updated_at`, `description`, `skills`, `kyc_status`) VALUES
-(1, 'User Hasan', NULL, 'user@gmail.com', '1706536283.png', '+8801976814812', 'Belarus', 'United Kingdom', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$bpzr5I3WnA1FKp7SR0meoeJgmXT5Ux7DovdWCUquPvWdNgjXZHS5i', 900.5495728445, 5, 0, 'e5BcK6ppgopsErVnEXW7yZL9JEQ75zq2JG0SZYG1EWKoRXqEKt03O9ODupWg', NULL, '2024-03-24 08:30:20', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'fghsdgh,sdfgsefg', 2),
-(4, 'User Hasan', NULL, 'showrabhasan7515@gmail.com', 'JIC1588136853people.png', '17283320', 'Belarus', 'UserRequest', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$Muu9xoTvxsx6mHh3yjqLTecTKADrG7YMYmGIqWIuz.YbDoR97Cqw.', 0, NULL, 0, NULL, NULL, '2021-12-14 00:04:01', NULL, NULL, 0),
-(5, 'Test Product1', NULL, 'shaon@gmail.com', NULL, '172833200', NULL, NULL, NULL, NULL, 1, 'Yes', '521dabcadf15fabf6eb8d08bd960942a', '$2a$12$6eVkxqi9PbsGAg.uRBoyOOND8oZaCH8IHtss5FFVPb0k.64u1aSW.', 0, NULL, 0, 'rLpl6P782AXzb2zKX8qqc62W0TblP8v0nMK4yC7JU8UF76rHAQYnx7ZTeULP', '2021-12-18 23:30:31', '2021-12-18 23:30:31', NULL, NULL, 0),
-(8, 'pranab Sarker', 'pronob', 'pronobsarker@gmail.com', '1711031757.png', '01976814812', NULL, 'Comilla', 'Songraish, Adarsha Sadar, Comilla', '3500', 1, 'No', NULL, '$2y$10$cGZdaxAzxk0lpyXWbGfukuLxnvyr1HJw7Y39wAx092ReKNu1S.BFC', 0, NULL, 0, 'VC55wNik6F8vDeUpGOMzKwDA6nn4RS4nEld35ZBGbU8deBZ1BiXsooihlVpM', '2023-11-11 01:01:54', '2024-03-21 08:35:57', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'sdfgsefg,fghsdgh,fdgsdhdfgh', 0),
-(9, 'software', 'softbakery', 'softwarebakery71@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '1444e0ba77c86e8b08b8d301e56e1ac4', '$2y$10$bKwgbvt8lUaCd3EglY5xMe8y4aFAKCv9vZWV8AxDh0NY5Z.KpJ0I2', 0, NULL, 0, NULL, '2024-01-30 08:39:31', '2024-01-30 08:39:31', NULL, NULL, 0),
-(10, 'pranab Sarker', 'newuser', 'pronobsarker1600@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '415ced504fab6c810410df3e11ed4098', '$2y$10$KCMBf.zsRLIuHfM0ghGaj.MRrSkY605TMzAlNDS4XSm9ezaJWvnYa', 0, NULL, 0, NULL, '2024-01-30 08:42:38', '2024-01-30 08:42:38', NULL, NULL, 0);
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `country`, `city`, `address`, `zip`, `status`, `email_verified`, `verification_link`, `password`, `balance`, `is_plan`, `is_verify`, `remember_token`, `created_at`, `updated_at`, `description`, `skills`, `kyc_status`, `portfolio`) VALUES
+(1, 'User Hasan', NULL, 'user@gmail.com', '1706536283.png', '+8801976814812', 'Belarus', 'United Kingdom', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$bpzr5I3WnA1FKp7SR0meoeJgmXT5Ux7DovdWCUquPvWdNgjXZHS5i', 900.5495728445, 5, 0, 'e5BcK6ppgopsErVnEXW7yZL9JEQ75zq2JG0SZYG1EWKoRXqEKt03O9ODupWg', NULL, '2024-03-24 08:30:20', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'fghsdgh,sdfgsefg', 2, NULL),
+(4, 'User Hasan', NULL, 'showrabhasan7515@gmail.com', 'JIC1588136853people.png', '17283320', 'Belarus', 'UserRequest', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$Muu9xoTvxsx6mHh3yjqLTecTKADrG7YMYmGIqWIuz.YbDoR97Cqw.', 0, NULL, 0, NULL, NULL, '2021-12-14 00:04:01', NULL, NULL, 0, NULL),
+(5, 'Test Product1', NULL, 'shaon@gmail.com', NULL, '172833200', NULL, NULL, NULL, NULL, 1, 'Yes', '521dabcadf15fabf6eb8d08bd960942a', '$2a$12$6eVkxqi9PbsGAg.uRBoyOOND8oZaCH8IHtss5FFVPb0k.64u1aSW.', 0, NULL, 0, 'rLpl6P782AXzb2zKX8qqc62W0TblP8v0nMK4yC7JU8UF76rHAQYnx7ZTeULP', '2021-12-18 23:30:31', '2021-12-18 23:30:31', NULL, NULL, 0, NULL),
+(8, 'pranab Sarker', 'pronob', 'pronobsarker@gmail.com', '1711031757.png', '01976814812', NULL, 'Comilla', 'Songraish, Adarsha Sadar, Comilla', '3500', 1, 'No', NULL, '$2y$10$cGZdaxAzxk0lpyXWbGfukuLxnvyr1HJw7Y39wAx092ReKNu1S.BFC', 0, NULL, 0, 'VC55wNik6F8vDeUpGOMzKwDA6nn4RS4nEld35ZBGbU8deBZ1BiXsooihlVpM', '2023-11-11 01:01:54', '2024-03-21 08:35:57', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'sdfgsefg,fghsdgh,fdgsdhdfgh', 0, NULL),
+(9, 'software', 'softbakery', 'softwarebakery71@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '1444e0ba77c86e8b08b8d301e56e1ac4', '$2y$10$bKwgbvt8lUaCd3EglY5xMe8y4aFAKCv9vZWV8AxDh0NY5Z.KpJ0I2', 0, NULL, 0, NULL, '2024-01-30 08:39:31', '2024-01-30 08:39:31', NULL, NULL, 0, NULL),
+(10, 'pranab Sarker', 'newuser', 'pronobsarker1600@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '415ced504fab6c810410df3e11ed4098', '$2y$10$KCMBf.zsRLIuHfM0ghGaj.MRrSkY605TMzAlNDS4XSm9ezaJWvnYa', 0, NULL, 0, NULL, '2024-01-30 08:42:38', '2024-01-30 08:42:38', NULL, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
