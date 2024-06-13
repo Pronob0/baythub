@@ -196,6 +196,35 @@
                 </div>
                 @endif
 
+                @php
+                    $photos = explode(',',$user->portfolio);
+                @endphp
+
+                @if ($user->portfolio != Null)
+                <div class="block-wrap">
+
+                    <div class="block-header">
+                        <h4 class="block-title">@lang('User Portfolio')</h4>
+                    </div>
+
+                    <div class="block-body">
+
+                        <div class="upload__img-wrap">
+                            @foreach ($photos as $photo)
+                            <div class="upload__img-box" >
+                                <div style="background-image: url({{ asset('assets/images/portfolio/'.$photo) }})" data-number="0" data-img="{{ $photo }}" data-file="{{ asset('assets/images/portfolio/'.$photo) }}" class="img-bg">
+                                </div>
+                            </div>
+                            @endforeach
+                            
+                        </div>
+
+                        
+                    </div>
+                </div>
+                    
+                @endif
+
                 {{-- reviews --}}
 
 

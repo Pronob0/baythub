@@ -228,8 +228,14 @@
                     <div class="agent-widget mt-3">
                         <div class="agent-title">
                             <div class="agent-photo"><img src="{{ $item->user->photo ?  getPhoto($item->user->photo) :  getPhoto('user.png')}}" alt="user"></div>
-                            <div class="agent-details">
+                            <div class="agent-details d-flex">
                                 <h4><a href="{{ route('user.details',$item->user->id) }}">@lang('Posted By')</a></h4>
+                                @if ($item->user->kyc_status == 1)
+                                <span class="text-success mx-3"><i class="fa-solid fa-circle-check"></i></span> 
+                                @else
+                                <span style="color:#ef4545;" class="text-danger mx-3"><i class="fa-solid fa-circle-xmark"></i></span>
+                                @endif
+                               
                             </div>
                             <div class="clearfix"></div>
                         </div>

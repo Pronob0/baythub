@@ -220,6 +220,26 @@
 });
 
 
+$('.upload__img-close').click(function(){ 
+    var slug = $(this).data('img');
+
+    // get method delete url 
+    $.get("{{ url('user/portfolio/delete') }}/"+slug, function(data){
+
+    if(data.status == 'success'){
+        toastr.success(data.message);
+        $(this).parent().remove();
+
+    }else{
+        toastr.error(data.message);
+    }
+
+    });
+    
+});
+
+
+
             
         </script>
 

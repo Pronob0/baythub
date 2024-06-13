@@ -387,6 +387,7 @@ Route::middleware(['maintenance'])->group(function () {
         Route::middleware('email_verify')->group(function () {
             
         Route::get('/dashboard', [UserController::class,'index'])->name('user.dashboard');
+        Route::get('/portfolio/delete/{slug}', [UserController::class,'portfolioDelete'])->name('user.portfolio.delete');
         Route::get('/verification', [UserController::class,'verification'])->name('user.verification');
         Route::post('/verification', [UserController::class,'verificationSubmit'])->name('user.verification.submit');
         Route::get('user/wishlist', [UserController::class,'wishlist'])->name('user.own.wishlist');

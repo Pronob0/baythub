@@ -38,6 +38,7 @@
     $('.heart').click(function(){
         var id = $(this).data('id');
         // get method use 
+       
 
         $.get("{{ url('user/wishlist') }}/"+id, function(data){
 
@@ -45,6 +46,8 @@
             if(data.status == 'success'){
                 toastr.success(data.message);
                 $(this).find('i').addClass('active')
+
+
             }else{
                 toastr.error(data.message);
             }

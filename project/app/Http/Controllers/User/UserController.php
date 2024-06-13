@@ -79,6 +79,20 @@ class UserController extends Controller
         return redirect()->back()->with('message','Profile updated successfully');
     }
 
+    public function portfolioDelete($slug){
+        $user = auth()->user();
+        $portfolio = explode(',',$user->portfolio);
+        $key = array_search($slug,$portfolio);
+        unset($portfolio[$key]);
+
+        unlink('assets/images/portfolio/'.$slug);
+
+        $portfolio = implode(',',$portfolio);
+        $user->portfolio = $portfolio;
+        $user->save();
+        return response()->json(['status'=>'success','message'=>'Portfolio deleted successfully']);
+    }
+
     public function message( Request $request){
         $user = auth()->user();
         $tickets =UserContact::where('owner_id',$user->id)->orwhere('user_id',$user->id)->orderBy('id','DESC')->get();

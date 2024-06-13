@@ -100,6 +100,7 @@
                             <div class="click">
                                 @php
                                 $photo = explode(',',$item->photo);
+                                $wishlist = DB::table('wishlists')->where('advert_id',$item->id)->where('user_id',Auth::id())->first();
                             @endphp
                                  
                                 <div><img src="{{ asset('assets/images/advertisement/'.$photo[0]) }}" class="img-fluid mx-auto" alt="" />

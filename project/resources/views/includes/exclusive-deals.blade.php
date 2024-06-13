@@ -98,18 +98,13 @@
                          <div class="click">
                             @php
                             $photo = explode(',',$item->photo);
+                            $wishlist = DB::table('wishlists')->where('advert_id',$item->id)->where('user_id',Auth::id())->first();
                             @endphp
                             <div><img src="{{ asset('assets/images/advertisement/'.$photo[0]) }}" class="img-fluid mx-auto" alt="" />
-                           
                               <div class="listing-like-top heart" data-id="{{ $item->id }}">
-                                 <i class="fa-regular fa-heart {{ $wishlist ? 'active' : ' ' }}"></i>
-                             </div>
-                           
-
-                              <div class="listing-like-top">
-                                 <i class="fa-regular fa-heart"></i>
-                             </div>
-                           </div>
+                                  <i class="fa-regular fa-heart {{ $wishlist ? 'active' : ' ' }}"></i>
+                              </div>
+                          </div>
                          </div>
                       </div>
                       <!--<span class="property-type">{{ $item->subcategory->name }}</span>-->

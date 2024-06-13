@@ -173,7 +173,19 @@
                                         <input type="file" multiple="" data-max_length="20" class="upload__inputfile" name="portfolio[]">
                                       </label>
                                     </div>
-                                    <div class="upload__img-wrap"></div>
+                                    @php
+                                        $photos = explode(',', auth()->user()->portfolio);
+                                    @endphp
+                                    <div class="upload__img-wrap">
+                                        @foreach ($photos as $photo)
+                                        <div class="upload__img-box" >
+                                            <div style="background-image: url({{ asset('assets/images/portfolio/'.$photo) }})" data-number="0" data-img="{{ $photo }}" data-file="{{ asset('assets/images/portfolio/'.$photo) }}" class="img-bg">
+                                                <div class="upload__img-close" data-img="{{ $photo }}"></div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        
+                                    </div>
                                 </div> 
                             </div>
 
