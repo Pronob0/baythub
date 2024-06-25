@@ -454,7 +454,6 @@ Route::middleware(['maintenance'])->group(function () {
 
     // browse all services 
     Route::get('/browse/all/services',[FrontendController::class, 'browseAllServices'])->name('browse.all.services');
-    // details page 
     Route::get('/service/details/{id}',[FrontendController::class, 'serviceDetails'])->name('service.details');
     // Post advert route
     Route::get('/post/advert/{slug}/{type}',[PostAdController::class, 'index'])->name('post.advert');

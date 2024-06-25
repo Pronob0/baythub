@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\State;
 use App\Models\SubCategory;
 use Brian2694\Toastr\Facades\Toastr;
@@ -18,6 +19,7 @@ class PostAdController extends Controller
     {
         $category = Category::where('slug', $slug)->first();
         $subCategories = SubCategory::where('category_id', $category->id)->get();
+        $cities = Country::all();
         $states = State::all();
         $type = $type;
         return view('frontend.addPost.create',compact('category','subCategories','states','type'));

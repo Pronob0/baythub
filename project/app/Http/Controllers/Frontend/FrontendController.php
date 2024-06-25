@@ -326,16 +326,19 @@ class FrontendController extends Controller
 
         if ($validator->fails()) {
            Toastr::error('Please enter a valid email address', 'Error');
+           return back();
         }
         $subscriber =Subscriber::where('email',$request->email)->first();
         if(!empty($subscriber)){
             Toastr::error('You are already subscribed', 'Error');
+            return back();
            
         }else{
             $data  = new Subscriber();
             $input = $request->all();
             $data->fill($input)->save();
             Toastr::success('You have subscribed successfully', 'Success');
+            return back();
         }
     }
 

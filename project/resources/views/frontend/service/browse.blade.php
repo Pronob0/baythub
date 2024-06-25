@@ -153,8 +153,30 @@
             
 </section>
 <!-- =========================== All Property =============================== -->
+<!-- ============================ Call To Action Start ================================== -->
+<section class="call-to-act text-white" style="background: #00a7ff7a">
+    <div class="container">
+        <div class="row justify-content-center">
 
-<!-- =========================== All Property =============================== -->
+            <div class="col-lg-7 col-md-8">
+                <div class="clt-caption text-center mb-4">
+                    <h3>@lang('Subscribe Now!')</h3>
+                    <p>@lang('You will get notify if New job Added')</p>
+                </div>
+                <div class="inner-flexible-box subscribe-box">
+                    <form  id="subForm" action="{{route('front.subscribe')}}" method="POST" class="subscribe-form">
+                        {{ csrf_field() }}
+                    <div class="input-group">
+                        <input  type="email" name="email" class="form-control subEmail" placeholder="Enter your mail here">
+                        <button class="btn btn-subscribe btn-warning" type="submit"><i class="fa fa-arrow-right"></i></button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============================ Call To Action End ================================== -->
 @endsection
 
 @push('js')

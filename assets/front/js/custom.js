@@ -565,5 +565,8 @@ $(function() {
 			searchTypeButtons();
 		});
 	}
+
+
+	
 	
 });
