@@ -1,24 +1,44 @@
-<div class="col-md-4">
-    <div class="property_item heading_space">
-        <div class="price clearfix">
-            <div class="type">
-                <h5>{{ $item->category->name }}</h5>
+<div class="col-lg-4 col-md-6">
+
+        <div class="property-listing property-2" style="height: 255px; margin-top:0px">
+            
+            <div class="listing-detail-wrapper pb-0">
+                <div class="listing-short-detail">
+                    <h4 class="listing-name"><a href="{{ route('advertise.details',$item->id) }}">  {{ $item->title }}</a></h4>
+                    
+                </div>
             </div>
-            <div class="pl-3">
-                <h4 class="text-success">{{ $item->price }} {{ $item->currency }}</h4>
+            <span class="badge badge-primary mx-3">{{ $item->category->name }}</span>
+            
+            <div class="price-features-wrapper">
+                
+                <div class="list-fx-features">
+                    <div class="listing-card-info-icon">
+                        
+                        <small class=""><i class="fa-solid fa-money-bill"></i> {{ $currency->sign }}{{ $item->budget }}</small>
+                    </div>
+                    <div class="listing-card-info-icon">
+                        
+                        <small class=""><i class="fa-solid fa-square"></i> {{ $item->room_sizes==0 ? 'A single Room' : 'Double Room' }}</small>
+                        
+                    </div>
+                    
+                    <div class="listing-card-info-icon">
+                        
+                        <small class=""><i class="fa-solid fa-house-chimney-user"></i> {{ $item->accomodation_for }}</small>
+                         
+                    </div>
+                    <div class="listing-card-info-icon">
+                        
+                        <small class=""><i class="fa-solid fa-calendar-days"></i> {{ $item->move_from }}</small>
+                    </div>
+                </div> 
+                
+                <div class="property_links w-100">
+                <a href="{{ route('advertise.details',$item->id) }}" class="btn btn-theme-light w-100">@lang('More Detail')</a>
             </div>
+            </div>
+            
         </div>
-        <div class="proerty_content">
-            <div class="proerty_text">
-                <h3 class="captlize"><a href="{{ route('user.advert.show', $item->id) }}">{{ $item->title }}</a></h3>
-                <p>{{ $item->address }}</p>
-            </div>
-            <div class="property_meta transparent"> 
-                <span><i class="icon-select-an-objecto-tool"></i>{{ $item->size }} sqft</span> 
-                <span><i class="icon-bed"></i>{{ $item->bedroom }} Bedroom</span> 
-                <span><i class="icon-safety-shower"></i>{{ $item->bathroom }} Bathroom</span>   
-            </div>
-        </div>
-    </div>
 
 </div>

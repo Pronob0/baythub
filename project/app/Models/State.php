@@ -9,11 +9,7 @@ class State extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'country_id',
-        'postcode',
-        'area',
-        'region',
-        'country'
+        'town',
     ];
     public $timestamps = false;
 }

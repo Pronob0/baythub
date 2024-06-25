@@ -252,15 +252,19 @@
 
                     <div class="agent-widget mt-3">
                         <div class="agent-title">
-                            <div class="agent-photo"><img src="{{ getPhoto($item->user->photo) }}" alt=""></div>
-                            <div class="agent-details">
+                            <div class="agent-photo"><img src="{{ $item->user->photo ?  getPhoto($item->user->photo) :  getPhoto('user.png')}}" alt="user"></div>
+                            <div class="agent-details ">
                                 <h4><a href="{{ route('user.details',$item->user->id) }}">@lang('Posted By')</a></h4>
                             </div>
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="details text-center">
-                            <span class="d-block my-2"> Name: <a class="name" href="{{ route('user.details',$item->user->id) }}">{{ $item->user->name }} </a></span>
+                            <span class="d-block my-2"> Name: <a class="name" href="{{ route('user.details',$item->user->id) }}">{{ $item->user->name }} @if ($item->user->kyc_status == 1)
+                                    <span class="text-success  my-2"><i class="fa-solid fa-circle-check"></i></span>
+                                    @else
+                                    <span style="color:#ef4545;" class="text-danger  my-2"><i class="fa-solid fa-circle-xmark"></i></span>
+                                    @endif </a> </span>
                             {{-- ratings here --}}
                             <div class="rating">
                                 <div class="star-rating">
@@ -274,56 +278,18 @@
                                         @endfor
                                 </div>
                             </div>
-                            
-                            @if (auth()->check())
-                            @if (  $item->user->is_plan != 0 || auth()->user()->is_plan != 0)
-                            <span class="d-block my-2"><i class="lni-phone-handset me-2"></i> {{ $item->user->phone }}</span>
-                            @endif
-                            @endif
-                           
+
+                            {{-- make three modal button call, email and whatsapp   --}}
+                            <div class="d-flex justify-content-between pb-4 mt-5" style="border-bottom: 1px solid #e4e4e4">
+                                <a id="user-call" href="javascript:;" class="btn btn-warning btn-sm btn-rounded"><i class="fa fa-phone"></i> @lang('Call')</a>
+                                <a id="sendcontact" href="javascript:;" class="btn btn-primary btn-sm btn-rounded"><i class="fa fa-envelope"></i> @lang('Email')</a>
+                                <a href="https://api.whatsapp.com/send?phone={{ $item->user->phone }}" class="btn btn-success btn-sm btn-rounded"><i class="fa-brands fa-whatsapp"></i> @lang('Whatsapp')</a>
+                            </div>
+                            {{-- view all properties with arrow sign--}}
+                            <a href="{{ route('user.details',$item->user->id) }}" class=""> <small> @lang('View All Properties') <i class="fa fa-arrow-right"></i></small></a>
+
                         </div>
-
-
                     </div>
-
-                    <form action="{{ route('contact.property.user') }}" method="Post">
-                        @csrf
-                        <div class="agent-widget mt-3">
-                            <div class="agent-title mb-5 mt-2">
-
-                                <div class="agent-details">
-                                    <h4><a href="#">@lang('Contact Here')</a></h4>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-
-
-                            <input type="hidden" name="property_id" value="{{ $item->id }}">
-                            <input type="hidden" name="owner_id" value="{{ $item->user->id }}">
-
-                            <div class="form-group">
-                                <input type="text" readonly value="{{ auth()->user() ? auth()->user()->email: 'login first' }}" class="form-control" placeholder="Your Email" name="email">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Phone" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="message" class="form-control">I'm interested in this property.</textarea>
-                            </div>
-
-                            @if($gs->recaptcha == 1)
-                            <div class="form-input mb-3">
-                                {!! NoCaptcha::display() !!}
-                                {!! NoCaptcha::renderJs() !!}
-                                @error('g-recaptcha-response')
-                                <p class="my-2">{{$message}}</p>
-                                @enderror
-                            </div>
-                            @endif
-                            <button type="submit" class="btn btn-theme full-width">Send Message</button>
-                        </div>
-
-                    </form>
 
                 </div>
             </div>

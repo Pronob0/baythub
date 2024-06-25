@@ -162,7 +162,7 @@ class FrontendController extends Controller
 
     public function allUserAdvert($id){
         $user = User::findOrFail($id);
-        $advert = Advertisement::where('user_id', $user->id)->get();
+        $advert = Advertisement::where('user_id', $user->id)->paginate(21);
         return view('frontend.allUserAdvert', compact('user', 'advert'));
     }
 

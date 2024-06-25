@@ -28,23 +28,33 @@
             @foreach ($advert as $item)
 
             @if ($item->category_id==11)
-                @if ($type=='buy')
-                    @include('user-advert.property-wanted')
-                @elseif($type=='rent')
-                    @include('user-advert.room-wanted')
+                @if ($item->type=='buy')
+                    @include('frontend.user-advert.property-wanted')
+                @elseif($item->type=='rent')
+                    @include('frontend.user-advert.room-wanted')
                 @endif
             @endif
 
-            @if ($category->id==12)
-                @include('user-advert.exclusive-deals')
+            @if ($item->category_id==12)
+                @include('frontend.user-advert.exclusive-deals')
             @endif
 
-            @if ($category->id==13)
-                @include('user-advert.room-rent')
+            @if ($item->category_id==13)
+                @include('frontend.user-advert.room-rent')
             @endif
 
             @endforeach
+
+            {{-- pagination link  --}}
+
         </div>
+        <div class="row">
+            <div class="col-md-12">
+               <div class="d-flex justify-content-center">
+                  {{ $items->links('paginate') }}
+               </div>
+            </div>
+         </div>
         
 
     </div>
