@@ -1,6 +1,4 @@
 
-
-
 <div class="form-group col-md-6">
     <label>@lang('Region')</label>
     <select class="js-example-basic-single" name="city_id">

@@ -1,6 +1,11 @@
-<div class="form-group  col-md-6">
-    <label>Desired Location</label>
-    <input type="text" class="form-control" name="location" placeholder="Type Desired Location" >
+<div class="form-group col-md-6">
+    <label>@lang('Select City')</label>
+    <select class="js-example-basic-single" name="city_id">
+        <option value="">Select a City</option>
+        @foreach ($cities as $city)
+            <option value="{{ $city->id }}">{{ $city->name }}</option>
+        @endforeach
+    </select>
 </div>
 
 <div class="form-group col-md-6">

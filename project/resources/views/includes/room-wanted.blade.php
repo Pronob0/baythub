@@ -29,11 +29,13 @@
                     </div>
                     
                     <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <div class="input-with-icon">
-                                <input type="text"  class="form-control" placeholder="Postcode" name="postcode">
-                                <i class="ti-money"></i>
-                            </div>
+                        <div class="form-group ">
+                            <label>@lang('Select Town')</label>
+                            {{-- select 2 with all country  --}}
+                            <select id="towns" class="" name="town_id">
+                               
+                            </select>
+                        
                         </div>
                     </div>
                     

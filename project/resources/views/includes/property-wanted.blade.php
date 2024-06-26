@@ -108,11 +108,10 @@
                         </div>
                         <p class="property_add mt-3"><b> 
                             <i class="fa-solid fa-location-dot"></i>
-                        </b>{{ $item->location }}</p>
+                        </b>{{ $item->city->name }}, {{ $item->town->town }}</p>
                         <div class="property_meta"> 
                           <div class="list-fx-features">
                               <div class="listing-card-info-icon">
-                                    
                                      <small class=""><i class="fa-solid fa-credit-card"></i> {{ $item->buying_for == 'living' ? 'Living' : 'Investment' }}</small>
                                 </div>
                               <div class="listing-card-info-icon" >

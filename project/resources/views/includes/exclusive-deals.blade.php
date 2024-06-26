@@ -21,21 +21,12 @@
                    <div class="col-lg-3 col-md-6 col-sm-12">
                       <div class="form-group">
                          <div class="input-with-icon">
-                            <select id="cities" class="form-control" name="region">
-                               <option value="">@lang('Select Region')</option>
-                               <option value="Wales">@lang('Wales')</option>
-                               <option value="East Midlands">@lang('East Midlands')</option>
-                               <option value="East of England">@lang('East of England')</option>
-                               <option value="London">@lang('London')</option>
-                               <option value="North East & Cumbria">@lang('North East & Cumbria')</option>
-                               <option value="North West">@lang('North West')</option>
-                               <option value="Northern Ireland">@lang('Northern Ireland')</option>
-                               <option value="Scotland">@lang('Scotland')</option>
-                               <option value="South East">@lang('South East')</option>
-                               <option value="South West">@lang('South West')</option>
-                               <option value="West Midlands">@lang('West Midlands')</option>
-                               <option value="Yorkshire & Humberside">@lang('Yorkshire & Humberside')</option>
-                            </select>
+                            <select class="js-example-basic-single" name="city_id">
+                              <option value="">Select a Region</option>
+                              @foreach ($cities as $city)
+                                  <option value="{{ $city->id }}">{{ $city->name }}</option>
+                              @endforeach
+                          </select>
                             <i class="ti-briefcase"></i>
                          </div>
                       </div>

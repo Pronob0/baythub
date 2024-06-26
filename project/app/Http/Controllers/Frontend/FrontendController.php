@@ -23,6 +23,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use PHPMailer\PHPMailer\PHPMailer;
 use App\Http\Helpers\MediaHelper;
+use App\Models\BlogCategory;
+use App\Models\Country;
 use Illuminate\Support\Str;
 use App\Models\Page;
 
@@ -61,6 +63,7 @@ class FrontendController extends Controller
 
 
         $category = Category::where('slug', $slug)->first();
+        $cities = Country::all();
        
         $subs=$category->subcategories;
         $type = $type;
@@ -97,8 +100,8 @@ class FrontendController extends Controller
             ->when($request->room_size, function($query, $room_size){
                 return $query->where('room_sizes', $room_size);
             })
-            ->when($request->postcode, function($query, $postcode){
-                return $query->where('postcode', $postcode);
+            ->when($request->town_id, function($query, $town_id){
+                return $query->where('town_id', $town_id);
             })
             //find gender from about_flatmate json_decode
             ->when($request->gender, function($query, $about_flatmate){
@@ -119,8 +122,8 @@ class FrontendController extends Controller
                 return $query->where('subcategory_id', $sub_category);
             })
             
-            ->when($request->region, function($query, $region){
-                return $query->where('region', $region);
+            ->when($request->city_id, function($query, $city_id){
+                return $query->where('city_id', $city_id);
             })
             // strategy
             ->when($request->strategy, function($query, $strategy){
@@ -150,7 +153,7 @@ class FrontendController extends Controller
             })
             
             ->paginate(12);
-            return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type'));
+            return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type', 'cities'));
         }
 
        
@@ -354,7 +357,7 @@ class FrontendController extends Controller
         
         $this->storeData($request, new Service());
 
-        Toastr::success('New blog has been created', 'Success');
+        Toastr::success('New Job has been created', 'Success');
         return back();
         
     }
@@ -485,5 +488,16 @@ class FrontendController extends Controller
 
     public function jobDetails(){
         return view('frontend.jobDetails');
+    }
+
+    public function blog(){
+        $blogs = Blog::orderBy('id','DESC')->paginate(12);
+        $blogcategory = BlogCategory::where('status', 1)->get();
+        return view('frontend.blog', compact('blogs', 'blogcategory'));
+    }
+
+    public function blogDetails($id){
+        $blog = Blog::findOrFail($id);
+        return view('frontend.blogDetails', compact('blog'));
     }
 }

@@ -162,6 +162,23 @@
     });
 
 
+    // without on change event 
+    $(document).ready(function(){
+        var id = $('#ptypes').val();
+        var route = "{{ route('load.attribute',['id'=>':id']) }}";
+        $.ajax({
+            url: route.replace(':id',id),
+            type: 'GET',
+            dataType: 'json',
+            // response as html and load it in blade
+            success: function(response){
+                console.log(response);
+                $('#ifield').html(response.html);
+            }
+        });
+    });
+
+
     $('#ptypes').on('change',function(){
         var id = $(this).val();
         var route = "{{ route('load.attribute',['id'=>':id']) }}";

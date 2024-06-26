@@ -1,25 +1,31 @@
 
+<div class="form-group col-md-6">
+    <label>@lang('Select City')</label>
+    <select class="js-example-basic-single" name="city_id">
+        <option value="">Select a City</option>
+        @foreach ($cities as $city)
+            <option value="{{ $city->id }}">{{ $city->name }}</option>
+        @endforeach
+        
+    </select>
+</div>
 
 <div class="form-group col-md-6">
     <label>@lang('Where do you want to live? ')</label>
-    <input type="text" class="form-control" placeholder="Street Name" name="street" required>
+    <div class="form-group col-md-6">
+        <label>@lang('Select Town')</label>
+        <select id="towns" class="" name="town_id">
+           
+        </select>
+    </div>
 </div>
 
 {{-- input subcategory_id  --}}
 <input type="hidden" name="subcategory_id" value="0">
 
-<div class="form-group col-md-6">
-    <label>@lang('Post Code')</label>
-    <input type="text" class="form-control" placeholder="Post Code" name="postcode" required>
-</div>
+
 
 <input type="hidden" name="type" value="rent">
-
-
-<div class="form-group col-md-6">
-    <label>@lang('Town')</label>
-    <input type="text" class="form-control" placeholder="Town" name="location" required>
-</div>
 
 <div class="form-group col-md-6">
     <label>@lang('Buddy up')</label>

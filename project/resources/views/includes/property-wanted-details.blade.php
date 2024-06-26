@@ -26,7 +26,7 @@
 
                     <div class="block-body">
                         <ul class="dw-proprty-info">
-                            <li><strong>@lang('Desired Location:')</strong>{{ $item->location }}</li>
+                            <li><strong>@lang('Desired Location:')</strong>{{ $item->city->name }}, {{ $item->town->town }}</li>
                             <li><strong>@lang('Property Required')</strong>{{ $item->property_type==null? $item->plot_usage: $item->property_type }}</li>
                             <li><strong>@lang('Bedrooms')</strong>{{ $item->bedroom==null ? 0 :  $item->bedroom }}</li>
                             <li><strong>@lang('Reception')</strong>{{ $item->reception==null? 'No':  $item->reception }}</li>

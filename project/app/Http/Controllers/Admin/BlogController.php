@@ -23,10 +23,7 @@ class BlogController extends Controller
         $categories = BlogCategory::where('status', 1)->get();
         return view('admin.blog.create', compact('categories'));
     }
-    public function getSubcategory($id){
-        $subcategories = BlogSubcategory::where('category_id', $id)->get();
-        return response()->json($subcategories);
-    }
+    
 
     public function store(Request $request)
     {
