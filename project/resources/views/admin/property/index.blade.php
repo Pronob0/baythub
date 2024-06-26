@@ -35,6 +35,16 @@
               </select>
             </div>
 
+            {{-- search option goes here  --}}
+            <div class="form-group m-1 flex-grow-1">
+              <input type="number" name="search" class="form-control" placeholder="@lang('Search by ID')"
+                value="{{request('search')}}">
+            </div>
+            <div class="form-group m-1">
+              <button type="submit" class="btn btn-primary">@lang('Search')</button>
+            </div>
+
+
           
           </form>
         </div>

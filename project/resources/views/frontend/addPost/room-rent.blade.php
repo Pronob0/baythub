@@ -1,13 +1,26 @@
-
 <div class="form-group col-md-6">
-    <label>@lang('Street Name')</label>
-    <input type="text" class="form-control" placeholder="Street Name" name="street" required>
+    <label>@lang('Select City')</label>
+    {{-- select 2 with all country  --}}
+    <select class="js-example-basic-single" name="city_id">
+        <option value="">Select a City</option>
+        @foreach ($cities as $city)
+            
+            <option value="{{ $city->id }}">{{ $city->name }}</option>
+        @endforeach
+        
+    </select>
+
 </div>
 
 <div class="form-group col-md-6">
-    <label>@lang('Post Code')</label>
-    <input type="text" class="form-control" placeholder="Post Code" name="postcode" required>
+    <label>@lang('Select Town')</label>
+    {{-- select 2 with all country  --}}
+    <select id="towns" class="" name="town_id">
+       
+    </select>
+
 </div>
+
 
 <div class="form-group col-md-6">
     <label>@lang('Furnished')</label>
@@ -18,10 +31,7 @@
     </select>
 </div>
 
-<div class="form-group col-md-6">
-    <label>@lang('Town')</label>
-    <input type="text" class="form-control" placeholder="Town" name="location" required>
-</div>
+
 
 <div class="head-ta w-100 mb-4">
     <h3>@lang('Tenancy Details')</h3>

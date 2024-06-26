@@ -13,7 +13,7 @@ class Advertisement extends Model
         'user_id',
         'category_id',
         'subcategory_id',
-        'location',
+        'city_id',
         'postcode',
         'title',
         'buyer_type',
@@ -30,7 +30,7 @@ class Advertisement extends Model
         'require',
         'strategy',
         'region',
-        'street',
+        'town_id',
         'furnished',
         'train_station',
         'hmo',
@@ -79,6 +79,13 @@ class Advertisement extends Model
     public function usercontacts()
     {
         return $this->hasMany(UserContact::class,'property_id','id')->where('is_service', 0);
+    }
+
+    public function city(){
+        return $this->belongsTo(Country::class,'city_id','id');
+    }
+    public function town(){
+        return $this->belongsTo(State::class,'town_id','id');
     }
 
 }

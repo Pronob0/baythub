@@ -459,6 +459,7 @@ Route::middleware(['maintenance'])->group(function () {
     Route::get('/post/advert/{slug}/{type}',[PostAdController::class, 'index'])->name('post.advert');
     Route::get('/load/attribute/{id}',[PostAdController::class, 'getSubcategory'])->name('load.attribute');
     Route::post('/advertisement/post/',[PostAdController::class, 'store'])->name('advertisement.post');
+    Route::get('/towns', [PostAdController::class, 'getTowns'])->name('towns.index');
 
     Route::post('/subscribe', [FrontendController::class,'subscribe'])->name('front.subscribe');
     // Browse Advert

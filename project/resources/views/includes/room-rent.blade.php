@@ -125,7 +125,7 @@
                     
                     <div class="listing-detail-wrapper pb-0">
                         <div class="listing-short-detail">
-                            <p class="listing-name"><a href="{{ route('advertise.details',$item->id) }}"> <b><i class="fa-solid fa-location-dot"></i></b> {{ $item->street }}</a></p>
+                            <p class="listing-name text-uppercase"><a href="{{ route('advertise.details',$item->id) }}"> <b><i class="fa-solid fa-location-dot"></i></b> {{ $item->city->name }}, {{ $item->town->town }}</a></p>
                         </div>
                     </div>
                     

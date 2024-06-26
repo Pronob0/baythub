@@ -47,7 +47,7 @@
                 
                 <div class="d-flex justify-content-between">
                     <div class="street">
-                        <p> <i class="fa-solid fa-location-dot"></i> <b>{{$item->street}}, {{$item->region}}</b></p>
+                        <p class="text-uppercase"> <i class="fa-solid fa-location-dot"></i> <b>{{ $item->city->name }}, {{ $item->town->town }}</b></p>
                       
                     </div>
                     <div>

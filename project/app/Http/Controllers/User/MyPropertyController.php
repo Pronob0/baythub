@@ -6,6 +6,7 @@ use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Generalsetting;
 use App\Models\PaymentGateway;
@@ -209,7 +210,8 @@ class MyPropertyController extends Controller
         $advertisement = Advertisement::find($id);
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        return view('user.property.edit', compact('advertisement', 'categories', 'subCategories'));
+        $cities = Country::get();
+        return view('user.property.edit', compact('advertisement', 'categories', 'subCategories', 'cities'));
     }
 
     public function update(Request $request, $id)

@@ -1,34 +1,23 @@
 
-
-
 <div class="form-group col-md-6">
     <label>@lang('Region')</label>
-    <select id="region" class="form-control" name="region">
+    <select class="js-example-basic-single" name="city_id">
+        <option value="">Select a Region</option>
+        @foreach ($cities as $city)
+            <option {{ $advertisement->city_id== $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+        @endforeach
         
-        <option {{ $advertisement->region == 'Wales' ? 'selected':'' }} value="Wales">@lang('Wales')</option> 
-        <option {{ $advertisement->region == 'East Midlands' ? 'selected':'' }} value="East Midlands">@lang('East Midlands')</option> 
-        <option {{ $advertisement->region == 'East of England' ? 'selected':'' }} value="East of England">@lang('East of England')</option>
-        <option {{ $advertisement->region == 'London' ? 'selected':'' }} value="London">@lang('London')</option>
-        <option {{ $advertisement->region == 'North East & Cumbria' ? 'selected':'' }} value="North East & Cumbria">@lang('North East & Cumbria')</option>
-        <option {{ $advertisement->region == 'North West' ? 'selected':'' }} value="North West">@lang('North West')</option>
-        <option {{ $advertisement->region == 'Northern Ireland' ? 'selected':'' }}  value="Northern Ireland">@lang('Northern Ireland')</option>
-        <option {{ $advertisement->region == 'Scotland' ? 'selected':'' }} value="Scotland">@lang('Scotland')</option>
-        <option {{ $advertisement->region == 'South East' ? 'selected':'' }} value="South East">@lang('South East')</option>
-        <option {{ $advertisement->region == 'South West' ? 'selected':'' }} value="South West">@lang('South West')</option>
-        <option {{ $advertisement->region == 'West Midlands' ? 'selected':'' }} value="West Midlands">@lang('West Midlands')</option>
-        <option {{ $advertisement->region == 'Yorkshire & Humberside' ? 'selected':'' }} value="Yorkshire & Humberside">@lang('Yorkshire & Humberside')</option>
-
     </select>
 </div>
 
 <div class="form-group col-md-6">
-    <label>@lang('Road Name')</label>
-    <input type="text" class="form-control" placeholder="Road Name" name="street" value="{{  $advertisement->street  }}" required>
-</div>
+    <label>@lang('Select Town')</label>
+    {{-- select 2 with all country  --}}
+    <select id="towns" class="" name="town_id">
+        <option value="{{ $advertisement->town_id }}">{{ $advertisement->town->town }}</option>
+       
+    </select>
 
-<div class="form-group col-md-6">
-    <label>@lang('Post Code')</label>
-    <input type="text" class="form-control" placeholder="Post Code" value="{{ $advertisement->postcode }}" name="postcode" required>
 </div>
 
 
@@ -52,13 +41,17 @@
     <h3>@lang('Rent Information')</h3>
 </div>
 <br>
+@php
+    $cost = json_decode($advertisement->cost);
+@endphp
+
 <div class="form-group col-md-6">
     <label>@lang('Current Rent per month')</label>
-    <input type="number" class="form-control" placeholder="Current Rent per month {{ $currency->name }}" name="rent_pm" value="{{ $advertisement->rent_pm }}" required>
+    <input type="number" class="form-control" placeholder="Current Rent per month {{ $currency->name }}" name="rent_pm" value="{{ $cost->rent_pm }}" required>
 </div>
 <div class="form-group col-md-6">
     <label>@lang('Potential rent per month')</label>
-    <input type="number" class="form-control" placeholder="Potential rent per month {{ $currency->name }}" value="{{ $advertisement->potential_rent }}" name="potential_rent" required>
+    <input type="number" class="form-control" placeholder="Potential rent per month {{ $currency->name }}" value="{{ $cost->potential_rent }}" name="potential_rent" required>
 </div>
 <div class="head-ta w-100 mb-4">
     <h3>@lang('Cost Information')</h3>
@@ -70,17 +63,17 @@
 
 <div class="form-group col-md-6">
     <label>@lang('Rent Deposit Required')</label>
-    <input type="number" class="form-control" placeholder="Rent Deposit {{ $currency->name }}" name="rent_deposit" required value="{{ $advertisement->rent_deposit }}">
+    <input type="number" class="form-control" placeholder="Rent Deposit {{ $currency->name }}" name="rent_deposit" required value="{{ $cost->rent_deposit }}">
 </div>
 <div class="form-group col-md-6">
     <label>@lang('Damage Deposit Required')</label>
-    <input type="number" class="form-control" placeholder="Damage Deposit {{ $currency->name }}" name="damage_deposit" required value="{{ $advertisement->damage_deposit }}">
+    <input type="number" class="form-control" placeholder="Damage Deposit {{ $currency->name }}" name="damage_deposit" required value="{{ $cost->damage_deposit }}">
 </div>
 @endif
 
 <div class="form-group col-md-6">
     <label>@lang('Agency/Sourcing Fee')</label>
-    <input type="number" class="form-control" placeholder="Agency/Sourcing Fee {{ $currency->name }}" name="agency_fee" required value="{{ $advertisement->agency_fee }}">
+    <input type="number" class="form-control" placeholder="Agency/Sourcing Fee {{ $currency->name }}" name="agency_fee" required value="{{ $cost->agency_fee }}">
 </div>
 
 <div class="head-ta w-100 mb-4">

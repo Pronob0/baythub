@@ -115,7 +115,7 @@
                    </div>
                    <div class="listing-detail-wrapper pb-0">
                       <div class="listing-short-detail">
-                         <h4 class="listing-name "><a class="text-warning" href="{{ route('advertise.details',$item->id) }}"> <b><i class="fa-solid fa-location-dot"></i></b> {{ $item->street }}</a></h4>
+                         <h4 class="listing-name text-uppercase"><a class="text-warning" href="{{ route('advertise.details',$item->id) }}"> <b><i class="fa-solid fa-location-dot"></i> </b> {{ $item->city->name }}, {{ $item->town->town }}</a></h4>
                       </div>
                    </div>
                    <div class="price-features-wrapper">
@@ -124,7 +124,7 @@
                             <small class=""><i class="fa-solid fa-house"></i> {{ $item->property_type }} </small>
                          </div>
                          <div class="listing-card-info-icon">
-                            <small class=""><i class="fa-solid fa-location-dot"></i> {{$item->region}}</small>
+                            <small class=""><i class="fa-solid fa-location-dot"></i> {{ $item->town->town }}</small>
                          </div>
                          @php
                          $cost = json_decode($item->cost,true);

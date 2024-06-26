@@ -11,6 +11,7 @@ class PropertyController extends Controller
     public function index(Request $request){
 
        $remark = request('remark');
+       $search = request('search');
        if($remark == 'room_rent'){
           $advertisements = Advertisement::where('category_id',13)->orderBy('id','desc')->paginate(20);
        }
@@ -23,6 +24,10 @@ class PropertyController extends Controller
        else{
         $advertisements = Advertisement::orderBy('id','desc')->paginate(20);
        }
+         // search by id 
+         if($search){
+            $advertisements = Advertisement::where('id',$search)->orderBy('id','desc')->paginate(20);
+         }
 
        return view ('admin.property.index',compact('advertisements'));
 

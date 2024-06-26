@@ -20,9 +20,17 @@ class PostAdController extends Controller
         $category = Category::where('slug', $slug)->first();
         $subCategories = SubCategory::where('category_id', $category->id)->get();
         $cities = Country::all();
-        $states = State::all();
         $type = $type;
-        return view('frontend.addPost.create',compact('category','subCategories','states','type'));
+        return view('frontend.addPost.create',compact('category','subCategories','type','cities'));
+    }
+
+    public function getTowns(Request $request)
+    {
+        $search = $request->input('q'); // Get the search term from the query parameter
+        
+        $towns = State::where('town', 'like', '%' . $search . '%')->get();
+
+        return response()->json($towns);
     }
 
     public function getSubcategory($id){

@@ -238,6 +238,35 @@ $('.upload__img-close').click(function(){
     
 });
 
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+
+$(document).ready(function() {
+            $('#towns').select2({
+                ajax: {
+                    url: '{{ route('towns.index') }}',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term // Search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data.map(function(town) {
+                                return { id: town.id, text: town.town };
+                            })
+                        };
+                    },
+                    cache: true
+                },
+                minimumInputLength: 2,
+                placeholder: 'Select a town',
+            });
+        });
+
 
 
             
