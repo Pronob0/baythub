@@ -1,36 +1,40 @@
-<section style="background:#cddeed">
-    <div class="container text-center">
+<section class="border-warning text-black-50" style="">
+    <div class="container text-center" style="border-radius:50px; background:#d3d3d3; padding:30px; border:1px solid #000000">
 
       <div class="row mb-4">
          <div class="col text-center">
              <div class="sec-heading center">
                  <h2>Get Your Desire Jobs</h2>
-                 <p>The reliable way to hire a tradesperson.</p>
+                 <p>Find Trusted Tradespeople Effortlessly</p>
              </div>
          </div>
      </div>
         <!-- Three columns of text below the carousel -->
         <div class="row m-auto">
            <div class="col-lg-4">
-              <img class="rounded-circle mb-3" src="{{ asset('assets/images/11310907941702829797.jpg') }}" alt="Generic placeholder image" width="140" height="140">
+              <img class="mb-3" src="{{ asset('assets/images/step-1.png') }}" alt="Generic placeholder image" width="160" height="160">
               <h2>Step 1</h2>
               <p>Donec sed odio dui. Etiam porta.</p>
              
            </div>
            <!-- /.col-lg-4 -->
            <div class="col-lg-4">
-              <img class="rounded-circle mb-3" src="{{ asset('assets/images/11310907941702829797.jpg') }}" alt="Generic placeholder image" width="140" height="140">
-              <h2>Heading</h2>
+              <img class=" mb-3" src="{{ asset('assets/images/step-2.png') }}" alt="Generic placeholder image" width="160" height="160">
+              <h2>Step 2</h2>
               <p>Duis mollis, est non commodo luctus, nisi erat.</p>
               
            </div>
            <!-- /.col-lg-4 -->
            <div class="col-lg-4">
-              <img class="rounded-circle mb-3" src="{{ asset('assets/images/11310907941702829797.jpg') }}" alt="Generic placeholder image" width="140" height="140">
-              <h2>Heading</h2>
+              <img class="mb-3" src="{{ asset('assets/images/step-3.png') }}" alt="Generic placeholder image" width="160" height="160">
+              <h2>Step 3</h2>
               <p>Donec sed odio dui. Cras justo odio, dapibus ac.</p>
               
            </div>
+        </div>
+
+        <div class="para w-50 mx-auto text-justify">
+         <p class="text-center">Explore how BaytHub can simplify your search for tradespeople and connect you with local experts. Discover the benefits and features that make finding the right professionals for your home projectseasier than ever.</p>
         </div>
 
         {{-- Read More button in the middle  --}}

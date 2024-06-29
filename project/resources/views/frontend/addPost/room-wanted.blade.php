@@ -12,12 +12,11 @@
 
 <div class="form-group col-md-6">
     <label>@lang('Where do you want to live? ')</label>
-    <div class="form-group col-md-6">
-        <label>@lang('Select Town')</label>
+    
         <select id="towns" class="" name="town_id">
            
         </select>
-    </div>
+
 </div>
 
 {{-- input subcategory_id  --}}

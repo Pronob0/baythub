@@ -41,7 +41,9 @@ class FrontendController extends Controller
         $rooms = Advertisement::where('category_id',13)->orderBy('id','DESC')->get();
         $blogs = Blog::orderBy('id','DESC')->take(3)->get();
         $section = HeaderSection::first();
-        return view('frontend.index', compact('gs', 'category', 'buyers', 'exclusives', 'rooms', 'blogs', 'section'));
+        $cities = Country::take(6)->get();
+
+        return view('frontend.index', compact('gs', 'category', 'buyers', 'exclusives', 'rooms', 'blogs', 'section',  'cities'));
     }
 
     public function chooseAdvertCategory(){
@@ -88,7 +90,7 @@ class FrontendController extends Controller
                     return $query->where('about_flatmate', 'LIKE', '%'.$about_flatmate.'%');
                 })
                 ->paginate(12);
-                return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type'));
+                return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type', 'cities'));
             }
             else{
                 
@@ -109,7 +111,7 @@ class FrontendController extends Controller
             })
 
             ->paginate(12);
-            return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type'));
+            return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type','cities'));
 
             }
             
@@ -135,7 +137,7 @@ class FrontendController extends Controller
             })
 
             ->paginate(12);
-            return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type'));
+            return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type','cities'));
         }
         elseif($category->id == 13){
             $items = Advertisement::where('category_id', $category->id)
@@ -349,7 +351,8 @@ class FrontendController extends Controller
     public function service()
     {
         $categories = ServiceCategory::orderBy('id','DESC')->get();
-        return view('frontend.service.post', compact('categories'));
+        $cities = Country::all();
+        return view('frontend.service.post', compact('categories', 'cities'));
     }
 
     public function servicePost(Request $request)
@@ -422,8 +425,8 @@ class FrontendController extends Controller
             'category_id' => 'required|integer',
             'description' => 'required|string',
             'photo.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'location' => 'required|string',
-            'region' => 'required|string',
+            'city_id' => 'required|integer',
+            'town_id' => 'required|integer',
             'postcode' => 'required|string',
             'start_date' => 'required|date|after:today',
         ]);
@@ -445,7 +448,8 @@ class FrontendController extends Controller
         $data->description = $request->description;
         $data->budget = $request->budget ? $request->budget : 0.00;
         $data->user_id = auth()->user()->id;
-        $data->region = $request->region;
+        $data->city_id = $request->city_id;
+        $data->town_id = $request->town_id;
         $data->postcode = $request->postcode;
         $data->start_date = $request->start_date;
 

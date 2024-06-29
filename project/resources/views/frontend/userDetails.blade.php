@@ -31,29 +31,45 @@
                             <span class="d-block my-2"> <i class="fa-solid fa-location-dot"></i> {{ $user->address }}</span>
                             {{-- email verified or not --}}
                             {{-- member since date format --}}
-                            <span class="d-block my-2">Member Since {{ $user->created_at->format('d M Y') }}</span>
+                            <span class="d-block my-2"> <b>Member Since:</b> {{ $user->created_at->format('d M Y') }}</span>
                             
                             {{-- email verified or not --}}
                             
 
-                            <span class="d-block my-2"> @lang('Email Verified: ')
-                                @if($user->email_verified == 'Yes')
-                                <span class="badge badge-success">@lang('Yes')</span>
-                                @else
-                                <span class="badge badge-danger">@lang('No')</span>
-                                @endif
-                            </span>
-                            {{-- KYC verified --}}
-
-                            <span class="d-block my-2"> @lang('Telephone & ID verified: ')
-                                @if($user->kyc_status == 1)
-                                <span class="badge badge-success">@lang('Yes')</span>
-                                @else
-                                <span class="badge badge-danger">@lang('No')</span>
-                                @endif
-                            </span>
+                            
                         </div>
                     </div>
+
+                    <div class="agent-widget">
+                       
+                            <div class="agent-widget mt-3">
+                                <div class="agent-title mb-5 mt-2" style="margin-left: -35px">
+
+                                    <div class="agent-details">
+                                        <h4><a href="#">@lang('Verification')</a></h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+
+                                    <span class="d-block my-2"> @lang('Email Verified: ')
+                                        @if($user->email_verified == 'Yes')
+                                        <span class="badge badge-success">@lang('Yes')</span>
+                                        @else
+                                        <span class="badge badge-danger">@lang('No')</span>
+                                        @endif
+                                    </span>
+                                    {{-- KYC verified --}}
+        
+                                    <span class="d-block my-2"> @lang('Telephone & ID verified: ')
+                                        @if($user->kyc_status == 1)
+                                        <span class="badge badge-success">@lang('Yes')</span>
+                                        @else
+                                        <span class="badge badge-danger">@lang('No')</span>
+                                        @endif
+                                    </span>
+                                </div>
+                            </div>
 
                     <div class="agent-widget">
                         <form action="{{ route('user.rating.store') }}" method="Post">

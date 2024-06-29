@@ -15,10 +15,10 @@ class Service extends Model
         'title',
         'slug',
         'description',
-        'location',
+        'city_id',
         'budget',
         'photo',
-        'region',
+        'town_id',
         'postcode',
         'start_date',
         'is_featured',
@@ -40,6 +40,16 @@ class Service extends Model
         // if is_service == 1 then it is a service
         return $this->hasMany(UserContact::class,'property_id')->where('is_service', 1);
         
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function town()
+    {
+        return $this->belongsTo(State::class);
     }
 
 

@@ -265,6 +265,8 @@
                                     @else
                                     <span style="color:#ef4545;" class="text-danger  my-2"><i class="fa-solid fa-circle-xmark"></i></span>
                                     @endif </a> </span>
+
+                                    <span class="d-block my-2"> <b>Member Since:</b> {{ $user->created_at->format('d M Y') }}</span>
                             {{-- ratings here --}}
                             <div class="rating">
                                 <div class="star-rating">

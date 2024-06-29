@@ -68,29 +68,26 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="title">{{ __('Location') }}</label>
-                                                <input type="text" class="form-control" name="location" id="title" required placeholder="{{ __('Location') }}" value="{{old('title')}}">
-                                            </div>
-
-                                            <div class="form-group col-md-6">
-                                                <label>@lang('Region')</label>
-                                                <select id="region" class="form-control" name="region">
+                                                <label>@lang('Select City')</label>
+                                                <select class="js-example-basic-single" name="city_id">
+                                                    <option value="">Select a City</option>
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    @endforeach
                                                     
-                                                    <option value="Wales">@lang('Wales')</option> 
-                                                    <option value="East Midlands">@lang('East Midlands')</option> 
-                                                    <option value="East of England">@lang('East of England')</option>
-                                                    <option value="London">@lang('London')</option>
-                                                    <option value="North East & Cumbria">@lang('North East & Cumbria')</option>
-                                                    <option value="North West">@lang('North West')</option>
-                                                    <option value="Northern Ireland">@lang('Northern Ireland')</option>
-                                                    <option value="Scotland">@lang('Scotland')</option>
-                                                    <option value="South East">@lang('South East')</option>
-                                                    <option value="South West">@lang('South West')</option>
-                                                    <option value="West Midlands">@lang('West Midlands')</option>
-                                                    <option value="Yorkshire & Humberside">@lang('Yorkshire & Humberside')</option>
-                                            
                                                 </select>
                                             </div>
+
+
+                                            <div class="form-group col-md-6">
+                                                <label>@lang('Select Town ')</label>
+                                                
+                                                    <select id="towns" class="" name="town_id">
+                                                       
+                                                    </select>
+                                            </div>
+
+                                            
 
 
                                             <div class="form-group col-md-6">

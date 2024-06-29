@@ -1,3 +1,16 @@
+
+<style>
+   .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 51px;
+
+}
+.select2-container--default .select2-selection--single {
+    height: 57px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 51px;
+}
+</style>
 <div class="search-header-banner">
     <div class="container">
        <div class="full-search-2 transparent mt-3">
@@ -19,17 +32,12 @@
                       </div>
                    </div>
                    <div class="col-lg-3 col-md-6 col-sm-12">
-                      <div class="form-group">
-                         <div class="input-with-icon">
-                            <select class="js-example-basic-single" name="city_id">
-                              <option value="">Select a Region</option>
-                              @foreach ($cities as $city)
-                                  <option value="{{ $city->id }}">{{ $city->name }}</option>
-                              @endforeach
-                          </select>
-                            <i class="ti-briefcase"></i>
-                         </div>
-                      </div>
+                     <select class="js-example-basic-single" name="city_id">
+                        <option value="">Select a Region</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
                    </div>
                    <div class="col-lg-3 col-md-6 col-sm-12">
                       <div class="form-group">
