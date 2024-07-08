@@ -141,7 +141,7 @@
                           </div>
                        </div>
                        <div class="property_links w-100">
-                          <a href="{{ route('advertise.details',$item->id) }}" class="btn btn-theme-light w-100">@lang('More Detail')</a>
+                          <a href="{{ route('invest.details',$item->id) }}" class="btn btn-theme-light w-100">@lang('More Detail')</a>
                        </div>
                     </div>
                  </div>

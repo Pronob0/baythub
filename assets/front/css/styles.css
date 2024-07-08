@@ -204,7 +204,7 @@ p, ul, ol, dl, dt, dd, blockquote, address {
     box-shadow: none!important;
 }
 h1, h2, h3, h4, h5, h6 {
-    color: #2D3954;
+    color: #626c85;
     font-weight: 600;
     text-transform: capitalize;
     font-family: 'Poppins', sans-serif;
@@ -9994,6 +9994,9 @@ border-radius: 5px;
 .city-list a {
     text-decoration: underline;
     color: #585151;
+}
+.des i {
+    font-size: 23px;
 }
 
  

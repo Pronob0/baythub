@@ -383,7 +383,6 @@ Route::middleware(['maintenance'])->group(function () {
         Route::post('/login', [UserLoginController::class,'login'])->name('user.login.submit');
         Route::post('/register', [RegisterController::class,'register'])->name('user.register.submit');
         Route::get('/register/verify/{token}', 'Owner\RegisterController@token')->name('user.register.token');
-
         // AuthUser route
         Route::middleware('email_verify')->group(function () {
             
@@ -399,45 +398,36 @@ Route::middleware(['maintenance'])->group(function () {
         Route::post('investment/advert/post',[InvestController::class, 'store'])->name('investment.post');
     
         Route::get('/my-properties', [MyPropertyController::class,'index'])->name('user.my.properties');
-        // property delete 
         Route::delete('/property/delete/{id}', [MyPropertyController::class,'destroy'])->name('user.property.delete');
-        // property edit
         Route::get('/property/edit/{id}', [MyPropertyController::class,'edit'])->name('user.property.edit');
-        // property update
         Route::post('/property/update/{id}', [MyPropertyController::class,'update'])->name('user.property.update');
 
-        // property feature
         Route::post('/property/feature/', [MyPropertyController::class,'feature'])->name('user.property.feature');
         Route::get('/checkout/feature/success', [MyPropertyController::class,'success'])->name('feature.checkout.success');
 
-        // Rating route
         Route::post('/rating/store', [RatingController::class,'ratingStore'])->name('user.rating.store');
 
-        // service route
         Route::get('/my-services', [UserController::class,'myServices'])->name('user.my.services');
         Route::delete('/service/delete/{id}', [UserController::class,'serviceDelete'])->name('user.service.delete');
         Route::get('/service/edit/{service}',[FrontendController::class, 'serviceEdit'])->name('service.edit');
-    Route::post('/service/update/{service}',[FrontendController::class, 'serviceUpdate'])->name('service.update');
+        Route::post('/service/update/{service}',[FrontendController::class, 'serviceUpdate'])->name('service.update');
 
-    Route::get('all/invest/user',[UserController::class,'allinvest'])->name('user.investment');
-    Route::get('investement/details/{id}', [UserController::class,'investDetails'])->name('invest.details');
-    Route::get('investment/delete/{id}',[UserController::class,'investDelete'])->name('invest.delete');
-    Route::get('invest/edit/{id}' ,[InvestController::class,'editInvest'] )->name('invest.edit');
-    Route::post('invest/post/{id}',[InvestController::class,'update' ])->name('user.invest.update');
+        Route::get('all/invest/user',[UserController::class,'allinvest'])->name('user.investment');
+        Route::get('investement/details/{id}', [UserController::class,'investDetails'])->name('invest.details');
+        Route::get('investment/delete/{id}',[UserController::class,'investDelete'])->name('invest.delete');
+        Route::get('invest/edit/{id}' ,[InvestController::class,'editInvest'] )->name('invest.edit');
+        Route::post('invest/post/{id}',[InvestController::class,'update' ])->name('user.invest.update');
   
        Route::get('/wishlist/{id}', [WishlistController::class,'store'])->name('user.wishlist');
-
 
         Route::post('/stripe-submit', [StripeController::class,'store'])->name('stripe.submit');
         Route::get('/checkout/payment/success', [StripeController::class,'success'])->name('checkout.success');
         Route::get('/stripe/cancle', [StripeController::class,'cancel'])->name('stripe.cancel');
-
-        // message route 
+            
         Route::get('/message', [UserController::class,'message'])->name('user.message');
-        // post reply
+
         Route::post('/post/reply/{id}', [UserController::class,'postReply'])->name('user.message.reply');
 
-        // Logout Route
         Route::get('/logout', [UserLoginController::class,'logout'])->name('user.logout');
 
         });

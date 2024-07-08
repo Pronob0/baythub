@@ -245,6 +245,13 @@ class UserController extends Controller
 
         Toastr::success('Investment Deleted Successfully', 'Success');
     }
+
+    public function investDetails($id){
+        
+        $item= Investment::findOrFail($id);
+        
+        return view('frontend.invest.invest-details',compact('item'));
+    }
 }
 
 
