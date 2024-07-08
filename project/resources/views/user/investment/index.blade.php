@@ -32,7 +32,7 @@
                 
                     <!-- Bookmark Property -->
                     <div class="form-submit">	
-                        <h4>@lang('My Created Jobs')</h4>
+                        <h4>@lang('My Investements')</h4>
                     </div>
                     
                     <div class="row">
@@ -76,7 +76,7 @@
 
                                     <a href="{{ route('invest.edit',$item->id) }}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
                                     
-                                    <a href="javascript:;" data-href="{{ route('user.invest.delete',$item->id) }}" class="btn btn-sm btn-danger" data-toggle="modal"
+                                    <a href="javascript:;" data-href="{{ route('invest.delete',$item->id) }}" class="btn btn-sm btn-danger" data-toggle="modal"
                                     data-target="#deleteModal"><i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
@@ -146,7 +146,7 @@
                     </button>
                 </div>
                 <input type="hidden" name="id" id="id">
-                <input type="hidden" name="type" value="service">
+                <input type="hidden" name="type" value="invest">
                 <div class="modal-body">
                     <div class="row">
                         

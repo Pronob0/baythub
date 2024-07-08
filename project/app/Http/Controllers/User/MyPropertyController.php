@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Generalsetting;
+use App\Models\Investment;
 use App\Models\PaymentGateway;
 use App\Models\Service;
 use App\Models\SubCategory;
@@ -111,6 +112,14 @@ class MyPropertyController extends Controller
                     $advertise->save();
 
                 }
+                elseif($request['type'] == 'invest'){
+                    $invest = Investment::findOrFail($request['id']);
+                    $invest->is_featured = 1;
+                    $invest->feature_date = Carbon::now()->addDays($days);
+                    $invest->save();
+
+                }
+
                 else{
                     $service = Service::findOrFail($request['id']);
                     $service->is_featured = 1;

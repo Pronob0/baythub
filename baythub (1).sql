@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2024 at 07:13 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Jul 08, 2024 at 01:15 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `realestate`
+-- Database: `baythub`
 --
 
 -- --------------------------------------------------------
@@ -603,6 +603,7 @@ CREATE TABLE `investments` (
   `bed_sizes` varchar(555) NOT NULL,
   `bed_prices` varchar(555) NOT NULL,
   `is_featured` int(2) NOT NULL DEFAULT 0,
+  `feature_date` timestamp NULL DEFAULT NULL,
   `photo` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -612,8 +613,8 @@ CREATE TABLE `investments` (
 -- Dumping data for table `investments`
 --
 
-INSERT INTO `investments` (`id`, `name`, `user_id`, `location`, `city_id`, `developer`, `starting_price`, `description`, `property_type`, `handover_date`, `payment_plan`, `building_name`, `unit_count`, `floor_count`, `parking_space`, `down_payment`, `during_construction`, `on_handover`, `announcement_date`, `construction_started`, `booking_started`, `expected_handover`, `amenities`, `bed_sizes`, `bed_prices`, `is_featured`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'This is test Investement', 1, 'Barking, United Kingdom', 58, 'Stathum Builder', 450, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Apartment,Villas', '2024-07-19', 'Nice', 'Kolpo', 5, 6, 5, 10, 20, 50, '2024-07-25', '2024-07-22', '2024-07-11', '2024-07-31', 'Hello, Here, How', '{\"1bed\":[\"21\",\"15\"],\"2bed\":[null],\"3bed\":[null]}', '{\"1bed\":[\"250\",\"150\"],\"2bed\":[null],\"3bed\":[null]}', 0, '', '2024-07-06 09:18:46', '2024-07-06 09:18:46');
+INSERT INTO `investments` (`id`, `name`, `user_id`, `location`, `city_id`, `developer`, `starting_price`, `description`, `property_type`, `handover_date`, `payment_plan`, `building_name`, `unit_count`, `floor_count`, `parking_space`, `down_payment`, `during_construction`, `on_handover`, `announcement_date`, `construction_started`, `booking_started`, `expected_handover`, `amenities`, `bed_sizes`, `bed_prices`, `is_featured`, `feature_date`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'This is test Investement', 1, 'Barking, United Kingdom', 58, 'Stathum Builder', 450, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Apartment,Villas', '2024-07-19', 'Nice', 'Kolpo', 5, 6, 5, 10, 20, 50, '2024-07-25', '2024-07-22', '2024-07-11', '2024-07-31', 'Hello, Here, How', '{\"onebed\":[\"21\",\"15\"],\"twobed\":[null],\"threebed\":[null]}', '{\"onebed\":[\"250\",\"150\"],\"twobed\":[null],\"threebed\":[null]}', 0, NULL, '', '2024-07-06 09:18:46', '2024-07-06 09:18:46');
 
 -- --------------------------------------------------------
 

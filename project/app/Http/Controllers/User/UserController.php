@@ -217,6 +217,34 @@ class UserController extends Controller
     return view('user.investment.index',compact('investments'));
    }
 
+
+   public function investDelete($id)
+    {
+
+        $advertisement = Investment::find($id);
+
+        if ($advertisement->photo) {
+            $images = explode(',', $advertisement->photo);
+            foreach ($images as $image) {
+                @unlink('assets/images/advertisement/' . $image);
+            }
+           
+        }
+        $usercontact = $advertisement->usercontacts;
+        if ($usercontact->count() > 0) {
+            foreach ($usercontact as $contact) {
+                $userowner = $contact->conversations;
+                foreach ($userowner as $owner) {
+                    $owner->delete();
+                }
+            }
+            $usercontact->delete();
+        }
+
+        $advertisement->delete();
+
+        Toastr::success('Investment Deleted Successfully', 'Success');
+    }
 }
 
 

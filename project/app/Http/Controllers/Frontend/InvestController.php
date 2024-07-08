@@ -51,16 +51,24 @@ class InvestController extends Controller
         ]);
 
         $bedSizes = [
-            '1bed' => $request->input('1bed_size'),
-            '2bed' => $request->input('2bed_size'),
-            '3bed' => $request->input('3bed_size'),
+            'onebed' => $request->input('1bed_size'),
+            'twobed' => $request->input('2bed_size'),
+            'threebed' => $request->input('3bed_size'),
+            'fourbed'=> $request->input('4bed_size'),
+            'fivebed' => $request->input('5bed_size'),
+            'sixbed' => $request->input('6bed_size'),
+            'sevenbed' => $request->input('7bed_size'),
             // Add other bed sizes as needed
         ];
 
         $bedPrices = [
-            '1bed' => $request->input('1bed_price'),
-            '2bed' => $request->input('2bed_price'),
-            '3bed' => $request->input('3bed_price'),
+            'onebed' => $request->input('1bed_price'),
+            'twobed' => $request->input('2bed_price'),
+            'threebed' => $request->input('3bed_price'),
+            'fourbed' => $request->input('4bed_price'),
+            'fivebed' => $request->input('5bed_price'),
+            'sixbed' => $request->input('6bed_price'),
+            'sevenbed' => $request->input('7bed_price'),
             // Add other bed prices as needed
         ];
         if($request->hasFile('photo')){
@@ -119,4 +127,12 @@ class InvestController extends Controller
         return view('frontend.investments',compact('items','cities'));
 
     }
+
+    public function editInvest($id){
+        $item = Investment::findOrFail($id);
+        $cities = Country::get();
+        return view('user.investment.edit',compact('item','cities'));
+    }
+
+
 }

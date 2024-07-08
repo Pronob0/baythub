@@ -421,6 +421,9 @@ Route::middleware(['maintenance'])->group(function () {
 
     Route::get('all/invest/user',[UserController::class,'allinvest'])->name('user.investment');
     Route::get('investement/details/{id}', [UserController::class,'investDetails'])->name('invest.details');
+    Route::get('investment/delete/{id}',[UserController::class,'investDelete'])->name('invest.delete');
+    Route::get('invest/edit/{id}' ,[InvestController::class,'editInvest'] )->name('invest.edit');
+    Route::post('invest/post/{id}',[InvestController::class,'update' ])->name('user.invest.update');
   
        Route::get('/wishlist/{id}', [WishlistController::class,'store'])->name('user.wishlist');
 

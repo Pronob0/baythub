@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <div class="submit-page">
 
-                            <form action="{{ route('investment.post') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('user.invest.update',$item->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <!-- Basic Information -->
                                 <div class="form-submit">
@@ -48,13 +48,13 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label>Project Name<a href="#" class="" data-tip="Project Name"></a></label>
-                                                <input type="text" class="form-control" name="name" placeholder="Enter Project Name">
+                                                <label>@lang('Project Name')<a href="#" class="" data-tip="Project Name"></a></label>
+                                                <input type="text" class="form-control" name="name" placeholder="Enter Project Name" value="{{ $item->name }}">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Location')<a href="#" class="" data-tip="Project Name"></a></label>
-                                                <input type="text" class="form-control" name="loation" placeholder="Enter Location">
+                                                <input type="text" class="form-control" name="loation" value="{{ $item->location }}" placeholder="Enter Location">
                                             </div>
 
                                             <div class="form-group col-md-6">
@@ -62,7 +62,7 @@
                                                 <select class="js-example-basic-single" name="city_id">
                                                     <option value="">Select a City</option>
                                                     @foreach ($cities as $city)
-                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    <option {{ $city->id == $item->city_id ? 'selected': '' }} value="{{ $city->id }}">{{ $city->name }}</option>
                                                     @endforeach
 
                                                 </select>
@@ -72,37 +72,41 @@
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Developer Name')<a href="#" class="" data-tip="Project Name"></a></label>
-                                                <input type="text" class="form-control" name="developer" placeholder="Enter Developer Name">
+                                                <input type="text" class="form-control" name="developer"  value="developer" placeholder="Enter Developer Name">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Starting Price')</label>
-                                                <input type="number" class="form-control" placeholder="Starting Price in {{ $currency->name }}" name="starting_price" required>
+                                                <input type="number" class="form-control" placeholder="Starting Price in {{ $currency->name }}" name="starting_price" value="{{ $item->starting_price }}" required>
                                             </div>
 
                                             <div class="form-group col-lg-12 col-md-12">
-                                                <label for="textarea">Description</label>
-                                                <textarea class="form-control" id="textarea" name="description" rows="5"></textarea>
+                                                <label for="textarea">@lang('Description')</label>
+                                                <textarea class="form-control" id="textarea" name="description" rows="5">{{ $item->description }}</textarea>
                                             </div>
 
                                             <div class="head-ta w-100 mb-4">
                                                 <h3>@lang('Property Information')</h3>
                                             </div>
 
+                                            @php
+                                                $pro_type = explode(",",$item->property_type)
+                                            @endphp
+
                                             <div class="form-group col-md-12 mb-5">
                                                 <label>@lang('Property Type')</label>
                                                 <div class="o-features">
                                                     <ul class="row d-flex">
                                                         <li class="col-md-4">
-                                                            <input id="apartment" class="checkbox-custom" value="Apartment" name="property_type[]" type="checkbox">
+                                                            <input id="apartment" class="checkbox-custom" {{ in_array('Apartment', $pro_type) ? 'checked' : '' }} value="Apartment" name="property_type[]" type="checkbox">
                                                             <label for="apartment" class="checkbox-custom-label">@lang('Apartment')</label>
                                                         </li>
                                                         <li class="col-md-4">
-                                                            <input id="villas" class="checkbox-custom" value="Villas" name="property_type[]" type="checkbox">
+                                                            <input id="villas" class="checkbox-custom" {{ in_array('Villas', $pro_type) ? 'checked' : '' }} value="Villas" name="property_type[]" type="checkbox">
                                                             <label for="villas" class="checkbox-custom-label">@lang('Villas')</label>
                                                         </li>
                                                         <li class="col-md-4">
-                                                            <input id="townhouses" class="checkbox-custom" value="Townhouses" name="property_type[]" type="checkbox">
+                                                            <input id="townhouses" class="checkbox-custom"  {{ in_array('Townhouses', $pro_type) ? 'checked' : '' }} value="Townhouses" name="property_type[]" type="checkbox">
                                                             <label for="townhouses" class="checkbox-custom-label">@lang('Townhouses')</label>
                                                         </li>
 
@@ -114,32 +118,32 @@
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Expected Handover Date')</label>
-                                                <input type="date" class="form-control" name="handover_date" required>
+                                                <input type="date" class="form-control" value="{{ $item->handover_date }}" name="handover_date" required>
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Payment Plan')</label>
-                                                <input type="text" class="form-control" name="payment_plan" placeholder="Enter Payment Plan">
+                                                <input type="text" class="form-control" value="{{ $item->payment_plan }}" name="payment_plan" placeholder="Enter Payment Plan">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Building Name')</label>
-                                                <input type="text" class="form-control" name="building_name" placeholder="Enter Building Name">
+                                                <input type="text" class="form-control" value="{{ $item->building_name }}" name="building_name" placeholder="Enter Building Name">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Unit Count')</label>
-                                                <input type="number" class="form-control" name="unit_count" placeholder="Enter Number of Unit">
+                                                <input type="number" class="form-control" name="unit_count" value="{{ $item->unit_count }}" placeholder="Enter Number of Unit">
                                             </div>
                                             {{-- floor_count  --}}
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Floor Count')</label>
-                                                <input type="number" class="form-control" name="floor_count" placeholder="Enter Number of Floor">
+                                                <input type="number" class="form-control" name="floor_count" value="{{ $item->floor_count }}" placeholder="Enter Number of Floor">
                                             </div>
                                             {{-- Total Parking Spaces: --}}
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Total Parking Space')</label>
-                                                <input type="number" class="form-control" name="parking_space" placeholder="Enter Number of Parking Space">
+                                                <input type="number" class="form-control" value="{{ $item->parking_space }}" name="parking_space" placeholder="Enter Number of Parking Space">
                                             </div>
 
                                             <div class="head-ta w-100 mb-4">
@@ -149,19 +153,19 @@
                                             {{-- Down payment  --}}
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Down Payment (%)')</label>
-                                                <input type="number" class="form-control" name="down_payment" placeholder="Enter Down Payment">
+                                                <input type="number" class="form-control" value="{{ $item->down_payment }}" name="down_payment" placeholder="Enter Down Payment">
                                             </div>
 
                                             {{-- During Construction  --}}
                                             <div class="form-group col-md-6">
                                                 <label>@lang('During Construction (%)')</label>
-                                                <input type="number" class="form-control" name="during_construction" placeholder="Enter During Construction">
+                                                <input type="number" class="form-control" value="{{ $item->during_construction }}" name="during_construction" placeholder="Enter During Construction">
                                             </div>
 
                                             {{-- On Handover  --}}
                                             <div class="form-group col-md-6">
                                                 <label>@lang('On Handover (%)')</label>
-                                                <input type="number" class="form-control" name="on_handover" placeholder="Enter On Handover">
+                                                <input type="number" class="form-control" value="{{ $item->on_handover }}" name="on_handover" placeholder="Enter On Handover">
                                             </div>
 
                                             <div class="head-ta w-100 mb-4">
@@ -171,34 +175,34 @@
                                             {{-- Announcement Date:  date format  --}}
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Announcement Date')</label>
-                                                <input type="date" class="form-control" name="announcement_date" placeholder="Enter Announcement Date">
+                                                <input type="text" class="form-control" value="{{ $item->announcement_date }}" name="announcement_date" placeholder="Enter Announcement Date">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Construction Started')</label>
-                                                <input type="date" class="form-control" name="construction_started" placeholder="Enter Construction Started">
+                                                <input type="text" class="form-control" value="{{ $item->construction_started }}" name="construction_started" placeholder="Enter Construction Started">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Booking Start Date')</label>
-                                                <input type="date" class="form-control" name="booking_started" placeholder="Enter Start Date">
+                                                <input type="text" class="form-control" value="{{ $item->booking_started }}" name="booking_started" placeholder="Enter Start Date">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Expected Handover Date')</label>
-                                                <input type="date" class="form-control" name="expected_handover" placeholder="Enter Expected Date">
+                                                <input type="text" class="form-control" value="{{ $item->expected_handover }}" name="expected_handover" placeholder="Enter Expected Date">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label>@lang('Features / Amenities') <small>seperate by (,)</small> </label>
-                                                <input type="text" class="form-control" name="amenities" placeholder="Enter Features">
+                                                <input type="text" class="form-control" value="{{ $item->amenities }}" name="amenities" placeholder="Enter Features">
                                             </div>
 
                                             <div class="head-ta w-100 mb-4">
                                                 <h3>@lang('Unit Available')</h3>
                                             </div>
 
-                                          @includeIf('frontend.invest.bed-size')
+                                          @includeIf('user.investment.bed-size')
 
                                           </div>
 
