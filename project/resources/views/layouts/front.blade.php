@@ -39,6 +39,9 @@
 
     {{-- select2 css  --}}
     <link href="{{ asset('assets/front/css/select2.min.css') }}" rel="stylesheet">
+
+    {{-- Bootstrap css  --}}
+    <link href="{{ asset('assets/front/css/bootstrap.min.css') }}" rel="stylesheet">
     
         {{-- toastr css  --}}   
     <link href="{{ asset('assets/front/css/toastr.min.css') }}" rel="stylesheet">

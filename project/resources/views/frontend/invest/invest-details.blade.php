@@ -260,19 +260,20 @@
                                 $bedprice = json_decode($item->bed_prices);
                             @endphp
 
-                            
+
                             <div class="accordion" id="accordionExample">
-                                @if(isset($bedsize->onebed))
-
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      1 Bed
+                            @if(isset($bedsize->onebed))
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Beds 1
                                     </button>
-                                  </h2>
-                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-
+                                    </h2>
+                                </div>
+                            
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
                                         <table class="table table-light">
                                             <thead>
                                                 <tr>
@@ -292,23 +293,23 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        
-                                        
+                                    
                                     </div>
-                                  </div>
                                 </div>
-                                @endif
+                            </div>
+                            @endif
 
-                                @if(isset($bedsize->twobed))
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                      2 Beds
+                            @if(isset($bedsize->twobed))
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Beds 2
                                     </button>
-                                  </h2>
-                                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
                                         <table class="table table-light">
                                             <thead>
                                                 <tr>
@@ -327,21 +328,24 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                      
                                     </div>
-                                  </div>
                                 </div>
-                                @endif
+                            </div>
+                            @endif
 
-                                @if(isset($bedsize->threebed))
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                      3 Beds
+
+                            @if(isset($bedsize->threebed))
+
+                                <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Beds 3
                                     </button>
-                                  </h2>
-                                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
 
                                         <table class="table table-light">
                                             <thead>
@@ -361,21 +365,25 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                      
-                                    </div>
-                                  </div>
-                                </div>
-                                @endif
 
-                                @if(isset($bedsize->fourbed))
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                      4 Beds
+                                    </div>
+                                </div>
+                                </div>
+
+                            @endif
+
+                            @if(isset($bedsize->fourbed))
+
+                                <div class="card">
+                                <div class="card-header" id="headingfour">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                                        Beds 4
                                     </button>
-                                  </h2>
-                                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
+                                    </h2>
+                                </div>
+                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
+                                    <div class="card-body">
 
                                         <table class="table table-light">
                                             <thead>
@@ -395,21 +403,25 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                      
-                                    </div>
-                                  </div>
-                                </div>
-                                @endif
 
-                                @if(isset($bedsize->fivebed))
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                      5 Beds
+                                    </div>
+                                </div>
+                                </div>
+
+                            @endif
+
+                            @if(isset($bedsize->fivebed))
+
+                                <div class="card">
+                                <div class="card-header" id="headingfive">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                                        Beds 5
                                     </button>
-                                  </h2>
-                                  <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
+                                    </h2>
+                                </div>
+                                <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionExample">
+                                    <div class="card-body">
 
                                         <table class="table table-light">
                                             <thead>
@@ -429,21 +441,25 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                      
-                                    </div>
-                                  </div>
-                                </div>
-                                @endif
 
-                                @if(isset($bedsize->sixbed))
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                      6 Beds
+                                    </div>
+                                </div>
+                                </div>
+
+                            @endif
+
+                            @if(isset($bedsize->sixbed))
+
+                                <div class="card">
+                                <div class="card-header" id="headingsix">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                                        Beds 6
                                     </button>
-                                  </h2>
-                                  <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
+                                    </h2>
+                                </div>
+                                <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample">
+                                    <div class="card-body">
 
                                         <table class="table table-light">
                                             <thead>
@@ -463,22 +479,25 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                      
+
                                     </div>
-                                  </div>
                                 </div>
-                                @endif
+                                </div>
 
+                            @endif
 
-                                @if(isset($bedsize->sevenbed))
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingSeven">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                      7 Beds
+                            @if(isset($bedsize->sevenbed))
+
+                                <div class="card">
+                                <div class="card-header" id="headingseven">
+                                    <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                                        Beds 7
                                     </button>
-                                  </h2>
-                                  <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
+                                    </h2>
+                                </div>
+                                <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordionExample">
+                                    <div class="card-body">
 
                                         <table class="table table-light">
                                             <thead>
@@ -498,14 +517,19 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                      
+
                                     </div>
-                                  </div>
                                 </div>
-                                @endif
+                                </div>
 
+                            @endif
 
-                              </div>
+                            
+                            
+                            </div>
+
+                            
+                            
 
                             
                         </div>
