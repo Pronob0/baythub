@@ -6,7 +6,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="sec-heading center">
                     <h2>{{ $section->buyer_title }}</h2>
-                    <p>{{ $section->buyer_subtitle }}</p>
+                    <!--<p>{{ $section->buyer_subtitle }}</p>-->
                 </div>
             </div>
         </div>

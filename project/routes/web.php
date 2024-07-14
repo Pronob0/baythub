@@ -382,7 +382,7 @@ Route::middleware(['maintenance'])->group(function () {
 
         Route::post('/login', [UserLoginController::class,'login'])->name('user.login.submit');
         Route::post('/register', [RegisterController::class,'register'])->name('user.register.submit');
-        Route::get('/register/verify/{token}', 'Owner\RegisterController@token')->name('user.register.token');
+        Route::get('/register/verify/{token}', [RegisterController::class,'token'])->name('user.register.token');
         // AuthUser route
         Route::middleware('email_verify')->group(function () {
             
@@ -413,10 +413,10 @@ Route::middleware(['maintenance'])->group(function () {
         Route::post('/service/update/{service}',[FrontendController::class, 'serviceUpdate'])->name('service.update');
 
         Route::get('all/invest/user',[UserController::class,'allinvest'])->name('user.investment');
-        Route::get('investement/details/{id}', [UserController::class,'investDetails'])->name('invest.details');
+        
         Route::get('investment/delete/{id}',[UserController::class,'investDelete'])->name('invest.delete');
-        Route::get('invest/edit/{id}' ,[InvestController::class,'editInvest'] )->name('invest.edit');
-        Route::post('invest/post/{id}',[InvestController::class,'update' ])->name('user.invest.update');
+        Route::get('invest/edit/{id}' ,[UserController::class,'editInvest'] )->name('invest.edit');
+        Route::post('invest/post/{id}',[UserController::class,'update' ])->name('user.invest.update');
   
        Route::get('/wishlist/{id}', [WishlistController::class,'store'])->name('user.wishlist');
 
@@ -452,6 +452,7 @@ Route::middleware(['maintenance'])->group(function () {
     Route::get('/job/details', [FrontendController::class, 'jobDetails'])->name('job.details');
 
     Route::get('/all/investment', [InvestController::class,'browsall'] )->name('investement.all');
+    Route::get('investement/details/{id}', [InvestController::class,'investDetails'])->name('invest.details');
     // browse all services 
     Route::get('/browse/all/services',[FrontendController::class, 'browseAllServices'])->name('browse.all.services');
     Route::get('/service/details/{id}',[FrontendController::class, 'serviceDetails'])->name('service.details');

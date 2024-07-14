@@ -2,7 +2,6 @@
       <div class="container" style="width: 80%">
           <div class="text-center mb-5">
               <h2>Top Search in UK</h2>
-              <p>We find you tenants and help with referencing, contracts and more if you need it.</p>
           </div>
 
           <div class="row d-flex justify-content-between">

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 08, 2024 at 01:15 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Jul 14, 2024 at 03:46 PM
+-- Server version: 8.0.36
+-- PHP Version: 8.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `baythub`
+-- Database: `baythubc_uk`
 --
 
 -- --------------------------------------------------------
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `abouts` (
-  `id` bigint(20) NOT NULL,
-  `header_title` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL
+  `id` bigint NOT NULL,
+  `header_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -48,17 +48,17 @@ INSERT INTO `abouts` (`id`, `header_title`, `title`, `description`) VALUES
 --
 
 CREATE TABLE `admins` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `email_verify_token` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `role_id` varchar(255) DEFAULT NULL,
-  `role` varchar(255) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `password` varchar(255) DEFAULT NULL,
-  `remember_token` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_verify_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -68,7 +68,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verify_token`, `phone`, `photo`, `role_id`, `role`, `status`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '', '09000000', '5021030811679304831.png', '0', 'Administrator', 1, '$2y$10$XRwVDuEISDfSl5ATNW59yOlGAb2h/9PJDX5WKErChklrQeDi0wb.i', 'iej9icmkyjyhwznHIyQHtxwn0CzOh7ZXmiumynIGQqBpCC2My8Lh3Yn44F9v', NULL, '2023-03-20 16:34:21'),
+(1, 'admin', 'admin@gmail.com', '', '09000000', '16715645811720543393.jpg', '0', 'Administrator', 1, '$2y$10$XRwVDuEISDfSl5ATNW59yOlGAb2h/9PJDX5WKErChklrQeDi0wb.i', 'iej9icmkyjyhwznHIyQHtxwn0CzOh7ZXmiumynIGQqBpCC2My8Lh3Yn44F9v', NULL, '2024-07-09 10:43:13'),
 (3, 'showrav Hasan', 'showrabhasan715@gmail.com', NULL, NULL, NULL, NULL, 'Farhad', 1, '$2y$10$WpCFoErUffgj0T59dorrKuJH5Nef6z7PCpgY52XPNbpWUVBrTw/6C', NULL, '2023-03-20 16:32:09', '2023-03-20 16:32:09');
 
 -- --------------------------------------------------------
@@ -78,12 +78,12 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verify_token`, `phone`, `pho
 --
 
 CREATE TABLE `admin_languages` (
-  `id` int(191) NOT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0,
+  `id` int NOT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT '0',
   `language` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `file` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rtl` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `rtl` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin_languages`
@@ -100,55 +100,55 @@ INSERT INTO `admin_languages` (`id`, `is_default`, `language`, `file`, `rtl`) VA
 --
 
 CREATE TABLE `advertisements` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `category_id` int(55) NOT NULL,
-  `subcategory_id` int(55) NOT NULL,
-  `city_id` int(19) DEFAULT NULL,
-  `postcode` varchar(191) DEFAULT NULL,
-  `title` varchar(191) DEFAULT NULL,
-  `buyer_type` varchar(191) DEFAULT NULL,
+  `id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `category_id` int NOT NULL,
+  `subcategory_id` int NOT NULL,
+  `city_id` int DEFAULT NULL,
+  `postcode` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `title` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `buyer_type` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `budget` double DEFAULT NULL,
-  `is_image` tinyint(5) NOT NULL DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `amenities` varchar(191) DEFAULT NULL,
-  `property_type` varchar(191) DEFAULT NULL,
-  `plot_usage` varchar(191) DEFAULT NULL,
-  `plot_size` varchar(191) DEFAULT NULL,
-  `bedroom` varchar(255) DEFAULT NULL,
-  `bathroom` varchar(255) DEFAULT NULL,
-  `reception` varchar(255) DEFAULT NULL,
-  `require` varchar(191) DEFAULT NULL,
-  `strategy` varchar(155) DEFAULT NULL,
-  `region` varchar(255) DEFAULT NULL,
-  `town_id` int(25) DEFAULT NULL,
-  `furnished` varchar(255) DEFAULT NULL,
-  `train_station` varchar(255) DEFAULT NULL,
-  `hmo` varchar(255) DEFAULT NULL,
-  `cost` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `buying_for` varchar(155) DEFAULT NULL,
-  `floor_pic` varchar(255) DEFAULT NULL,
-  `occupancy` varchar(255) DEFAULT NULL,
-  `condition` varchar(255) DEFAULT NULL,
-  `market_valuation` varchar(255) DEFAULT NULL,
-  `gross` varchar(255) DEFAULT NULL,
-  `sale` varchar(255) DEFAULT NULL,
-  `type` varchar(155) DEFAULT NULL,
-  `is_buddy_up` tinyint(4) DEFAULT NULL,
-  `is_tenancy` int(2) NOT NULL DEFAULT 0,
-  `tenant_details` varchar(255) DEFAULT NULL,
-  `features` varchar(255) DEFAULT NULL,
-  `tenance` varchar(255) DEFAULT NULL,
+  `is_image` tinyint NOT NULL DEFAULT '0',
+  `description` longtext COLLATE utf8mb4_general_ci,
+  `amenities` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `property_type` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `plot_usage` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `plot_size` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bedroom` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bathroom` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reception` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `require` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `strategy` varchar(155) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `region` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `town_id` int DEFAULT NULL,
+  `furnished` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `train_station` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `hmo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cost` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `buying_for` varchar(155) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `floor_pic` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `occupancy` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `condition` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `market_valuation` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gross` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `sale` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` varchar(155) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_buddy_up` tinyint DEFAULT NULL,
+  `is_tenancy` int NOT NULL DEFAULT '0',
+  `tenant_details` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `features` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tenance` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `room_sizes` int(11) DEFAULT NULL,
-  `period_accomodation` varchar(5) DEFAULT NULL,
-  `accomodation_for` varchar(255) DEFAULT NULL,
-  `move_from` varchar(255) DEFAULT NULL,
-  `about_you` varchar(555) DEFAULT NULL,
-  `about_flatmte` varchar(555) DEFAULT NULL,
-  `is_featured` int(11) NOT NULL DEFAULT 0,
+  `room_sizes` int DEFAULT NULL,
+  `period_accomodation` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `accomodation_for` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `move_from` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `about_you` varchar(555) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `about_flatmte` varchar(555) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_featured` int NOT NULL DEFAULT '0',
   `feature_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -167,19 +167,19 @@ INSERT INTO `advertisements` (`id`, `user_id`, `category_id`, `subcategory_id`, 
 --
 
 CREATE TABLE `blogs` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `category_id` int(191) NOT NULL,
-  `title` varchar(191) NOT NULL,
-  `slug` varchar(191) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `description` text NOT NULL,
-  `source` varchar(191) DEFAULT NULL,
-  `views` int(11) NOT NULL DEFAULT 0,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `meta_tag` text DEFAULT NULL,
-  `meta_description` text DEFAULT NULL,
-  `seo_check` tinyint(4) NOT NULL DEFAULT 0,
-  `tags` text DEFAULT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `category_id` int NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `source` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `views` int NOT NULL DEFAULT '0',
+  `status` tinyint NOT NULL DEFAULT '1',
+  `meta_tag` text COLLATE utf8mb4_unicode_ci,
+  `meta_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_check` tinyint NOT NULL DEFAULT '0',
+  `tags` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -200,11 +200,11 @@ INSERT INTO `blogs` (`id`, `category_id`, `title`, `slug`, `photo`, `description
 --
 
 CREATE TABLE `blog_categories` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint NOT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `status` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `blog_categories`
@@ -224,9 +224,9 @@ INSERT INTO `blog_categories` (`id`, `name`, `slug`, `status`) VALUES
 --
 
 CREATE TABLE `brands` (
-  `id` bigint(20) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -251,10 +251,10 @@ INSERT INTO `brands` (`id`, `title`, `photo`) VALUES
 --
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -262,10 +262,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `photo`) VALUES
-(11, 'Property wanted', 'property-wanted', '17829234591699199968.jpg'),
-(12, 'Exclusive Deals', 'exclusive-deals', '12593435911699200120.jpg'),
-(13, 'Room Rent', 'room-rent', '16900884271701856390.jpg'),
-(14, 'Buy', 'buy', '16900884271701856390.jpg');
+(11, 'Property wanted', 'property-wanted', '3637913281720635707.png'),
+(12, 'Exclusive Deals', 'exclusive-deals', '12411995511720635517.png'),
+(13, 'Room Rent', 'room-rent', '16849673971720635101.png'),
+(14, 'Properties for Sell', 'properties-for-sell', '2773010801720635005.png');
 
 -- --------------------------------------------------------
 
@@ -274,12 +274,12 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `photo`) VALUES
 --
 
 CREATE TABLE `contact_messages` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `message` text NOT NULL,
+  `id` bigint NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -301,15 +301,15 @@ INSERT INTO `contact_messages` (`id`, `name`, `email`, `phone`, `subject`, `mess
 --
 
 CREATE TABLE `contact_pages` (
-  `id` int(11) NOT NULL,
-  `email1` varchar(255) DEFAULT NULL,
-  `email2` varchar(255) DEFAULT NULL,
-  `phone1` varchar(255) DEFAULT NULL,
-  `phone2` varchar(255) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `photo` varchar(191) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `map_link` text DEFAULT NULL
+  `id` int NOT NULL,
+  `email1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone2` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `map_link` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -326,11 +326,11 @@ INSERT INTO `contact_pages` (`id`, `email1`, `email2`, `phone1`, `phone2`, `addr
 --
 
 CREATE TABLE `countries` (
-  `id` int(11) NOT NULL,
-  `name` varchar(191) DEFAULT NULL,
-  `iso3` varchar(191) DEFAULT NULL,
-  `phone_code` varchar(11) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1
+  `id` int NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `iso3` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone_code` varchar(11) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -423,12 +423,12 @@ INSERT INTO `countries` (`id`, `name`, `iso3`, `phone_code`, `status`) VALUES
 --
 
 CREATE TABLE `currencies` (
-  `id` int(191) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sign` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` double NOT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `is_default` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `currencies`
@@ -436,8 +436,8 @@ CREATE TABLE `currencies` (
 
 INSERT INTO `currencies` (`id`, `name`, `sign`, `value`, `is_default`) VALUES
 (1, 'USD', '$', 1, 0),
-(12, 'jgsdjyhasdf', 'sdf', 50, 0),
-(13, 'GBP', '£', 1, 1);
+(13, 'GBP', '£', 1, 1),
+(14, 'AED', 'Dhs', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -446,12 +446,12 @@ INSERT INTO `currencies` (`id`, `name`, `sign`, `value`, `is_default`) VALUES
 --
 
 CREATE TABLE `email_templates` (
-  `id` int(11) NOT NULL,
-  `email_type` varchar(255) DEFAULT NULL,
-  `email_subject` mediumtext DEFAULT NULL,
-  `email_body` longtext DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL,
+  `email_type` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `email_subject` mediumtext COLLATE utf8mb3_unicode_ci,
+  `email_body` longtext COLLATE utf8mb3_unicode_ci,
+  `status` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `email_templates`
@@ -470,9 +470,9 @@ INSERT INTO `email_templates` (`id`, `email_type`, `email_subject`, `email_body`
 --
 
 CREATE TABLE `faqs` (
-  `id` bigint(20) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `details` text DEFAULT NULL
+  `id` bigint NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `details` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -493,47 +493,47 @@ INSERT INTO `faqs` (`id`, `title`, `details`) VALUES
 --
 
 CREATE TABLE `generalsettings` (
-  `id` int(11) NOT NULL,
-  `curr_code` varchar(10) NOT NULL DEFAULT 'USD',
-  `curr_sym` varchar(10) NOT NULL DEFAULT '$',
-  `header_logo` varchar(255) DEFAULT NULL,
-  `favicon` varchar(191) NOT NULL,
-  `title` varchar(191) NOT NULL,
-  `loader` varchar(191) NOT NULL,
-  `smtp_host` varchar(255) DEFAULT NULL,
-  `mail_type` varchar(255) DEFAULT NULL,
-  `smtp_port` varchar(255) DEFAULT NULL,
-  `smtp_user` varchar(255) DEFAULT NULL,
-  `smtp_pass` varchar(255) DEFAULT NULL,
-  `mail_encryption` varchar(255) DEFAULT NULL,
-  `from_email` varchar(255) DEFAULT NULL,
-  `from_name` varchar(255) DEFAULT NULL,
-  `theme_color` varchar(255) DEFAULT NULL,
-  `is_tawk` tinyint(4) NOT NULL DEFAULT 0,
-  `tawk_id` varchar(222) DEFAULT NULL,
-  `is_verify` tinyint(4) DEFAULT 0,
-  `is_cookie` tinyint(4) NOT NULL DEFAULT 0,
-  `cookie_btn_text` varchar(255) DEFAULT NULL,
-  `cookie_text` text DEFAULT NULL,
-  `is_maintenance` tinyint(4) DEFAULT 0,
-  `maintenance` text DEFAULT NULL,
-  `registration` tinyint(1) NOT NULL DEFAULT 1,
-  `kyc` tinyint(1) NOT NULL DEFAULT 1,
-  `kyc_offer_limit` int(11) NOT NULL DEFAULT 0,
-  `kyc_trade_limit` int(11) NOT NULL DEFAULT 0,
-  `sms_notify` tinyint(1) NOT NULL DEFAULT 1,
-  `email_notify` tinyint(1) NOT NULL DEFAULT 1,
-  `allowed_email` text DEFAULT NULL,
-  `contact_no` varchar(20) DEFAULT NULL,
-  `recaptcha` tinyint(1) NOT NULL DEFAULT 0,
-  `recaptcha_key` varchar(255) DEFAULT NULL,
-  `recaptcha_secret` varchar(255) DEFAULT NULL,
-  `cookie` text DEFAULT NULL,
-  `two_fa` int(11) NOT NULL,
-  `hero_banner` varchar(255) DEFAULT NULL,
-  `hero_title` varchar(255) DEFAULT NULL,
-  `hero_text` varchar(255) DEFAULT NULL,
-  `copyright_text` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `curr_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'USD',
+  `curr_sym` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '$',
+  `header_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `favicon` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `loader` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `smtp_host` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mail_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `smtp_port` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `smtp_user` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `smtp_pass` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mail_encryption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `theme_color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_tawk` tinyint NOT NULL DEFAULT '0',
+  `tawk_id` varchar(222) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_verify` tinyint DEFAULT '0',
+  `is_cookie` tinyint NOT NULL DEFAULT '0',
+  `cookie_btn_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cookie_text` text COLLATE utf8mb4_unicode_ci,
+  `is_maintenance` tinyint DEFAULT '0',
+  `maintenance` text COLLATE utf8mb4_unicode_ci,
+  `registration` tinyint(1) NOT NULL DEFAULT '1',
+  `kyc` tinyint(1) NOT NULL DEFAULT '1',
+  `kyc_offer_limit` int NOT NULL DEFAULT '0',
+  `kyc_trade_limit` int NOT NULL DEFAULT '0',
+  `sms_notify` tinyint(1) NOT NULL DEFAULT '1',
+  `email_notify` tinyint(1) NOT NULL DEFAULT '1',
+  `allowed_email` text COLLATE utf8mb4_unicode_ci,
+  `contact_no` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `recaptcha` tinyint(1) NOT NULL DEFAULT '0',
+  `recaptcha_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `recaptcha_secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cookie` text COLLATE utf8mb4_unicode_ci,
+  `two_fa` int NOT NULL,
+  `hero_banner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hero_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hero_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `copyright_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -541,7 +541,7 @@ CREATE TABLE `generalsettings` (
 --
 
 INSERT INTO `generalsettings` (`id`, `curr_code`, `curr_sym`, `header_logo`, `favicon`, `title`, `loader`, `smtp_host`, `mail_type`, `smtp_port`, `smtp_user`, `smtp_pass`, `mail_encryption`, `from_email`, `from_name`, `theme_color`, `is_tawk`, `tawk_id`, `is_verify`, `is_cookie`, `cookie_btn_text`, `cookie_text`, `is_maintenance`, `maintenance`, `registration`, `kyc`, `kyc_offer_limit`, `kyc_trade_limit`, `sms_notify`, `email_notify`, `allowed_email`, `contact_no`, `recaptcha`, `recaptcha_key`, `recaptcha_secret`, `cookie`, `two_fa`, `hero_banner`, `hero_title`, `hero_text`, `copyright_text`) VALUES
-(1, 'USD', '$', '3794149701702919519.png', '14887296331702919532.png', 'Auctionsdfasd', '1564224328loading3.gif', 'sandbox.smtp.mailtrap.io', 'php_mailer', '2525', '4609fe63ba0b4b', '86dde1c9bf6d55', 'tls', 'pronob@famillynest.com', 'Admin', 'FFC107', 0, '6124fa49d6e7610a49b1c136/1fds73c17', 1, 0, 'cookie_btn_text', NULL, 0, 'Website Maintenance', 1, 1, 2, 2, 1, 1, NULL, '+88000000000', 1, '6LeMB00fAAAAABm___8W1d2ocsMjC7_8vdRXQ58b', '6LeMB00fAAAAAGB_3ya1UuIpAbikNOXyfPUr8Gey', '{\"status\":\"1\",\"button_text\":\"Allow Cookie\",\"cookie_text\":\"Our site use cookies when you visit our website, including any other media form, mobile website, or mobile application related or connected to help customize the site and improve your experience.\"}', 0, '3478667561715093939.jpg', 'Ultimate Hib for Home', 'Connect, Explore and Thrive', 'Copyright © 2023 Reserved Passion by GeniusOceannnn');
+(1, 'USD', '$', '3794149701702919519.png', '14887296331702919532.png', 'Auctionsdfasd', '1564224328loading3.gif', 'mail.baythub.com', 'php_mailer', '465', 'baythub@baythub.com', 'n8u&4joX3x-t', 'ssl', 'baythub@baythub.com', 'Baythub', 'FFC107', 0, '6124fa49d6e7610a49b1c136/1fds73c17', 1, 0, 'cookie_btn_text', NULL, 0, 'Website Maintenance', 1, 1, 2, 2, 1, 1, NULL, '+88000000000', 1, '6LeMB00fAAAAABm___8W1d2ocsMjC7_8vdRXQ58b', '6LeMB00fAAAAAGB_3ya1UuIpAbikNOXyfPUr8Gey', '{\"status\":\"1\",\"button_text\":\"Allow Cookie\",\"cookie_text\":\"Our site use cookies when you visit our website, including any other media form, mobile website, or mobile application related or connected to help customize the site and improve your experience.\"}', 0, '3478667561715093939.jpg', 'Connect   Explore   Thrive', '360 platform for homes', 'Copyright © 2023 Reserved Passion by GeniusOceannnn');
 
 -- --------------------------------------------------------
 
@@ -550,17 +550,17 @@ INSERT INTO `generalsettings` (`id`, `curr_code`, `curr_sym`, `header_logo`, `fa
 --
 
 CREATE TABLE `header_sections` (
-  `id` int(11) NOT NULL,
-  `room_title` varchar(255) DEFAULT NULL,
-  `room_subtitle` varchar(255) DEFAULT NULL,
-  `distress_title` varchar(255) DEFAULT NULL,
-  `distress_subtitle` varchar(255) DEFAULT NULL,
-  `buyer_title` varchar(255) DEFAULT NULL,
-  `buyer_subtitle` varchar(255) DEFAULT NULL,
-  `blog_title` varchar(255) DEFAULT NULL,
-  `blog_subtitle` varchar(255) DEFAULT NULL,
-  `subscribe_title` varchar(255) DEFAULT NULL,
-  `subscribe_subtitle` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `room_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `room_subtitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `distress_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `distress_subtitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `buyer_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `buyer_subtitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `blog_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `blog_subtitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `subscribe_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `subscribe_subtitle` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -577,34 +577,33 @@ INSERT INTO `header_sections` (`id`, `room_title`, `room_subtitle`, `distress_ti
 --
 
 CREATE TABLE `investments` (
-  `id` int(25) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `user_id` int(25) NOT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `city_id` int(25) DEFAULT NULL,
-  `developer` varchar(255) DEFAULT NULL,
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` int NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `city_id` int DEFAULT NULL,
+  `developer` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `starting_price` double NOT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `property_type` varchar(555) NOT NULL,
-  `handover_date` varchar(255) NOT NULL,
-  `payment_plan` varchar(255) NOT NULL,
-  `building_name` varchar(25) NOT NULL,
-  `unit_count` int(25) NOT NULL,
-  `floor_count` int(25) NOT NULL,
-  `parking_space` int(25) NOT NULL,
-  `down_payment` int(25) NOT NULL,
-  `during_construction` int(25) NOT NULL,
-  `on_handover` int(25) NOT NULL,
-  `announcement_date` varchar(255) NOT NULL,
-  `construction_started` varchar(255) NOT NULL,
-  `booking_started` varchar(255) NOT NULL,
-  `expected_handover` varchar(255) NOT NULL,
-  `amenities` varchar(555) NOT NULL,
-  `bed_sizes` varchar(555) NOT NULL,
-  `bed_prices` varchar(555) NOT NULL,
-  `is_featured` int(2) NOT NULL DEFAULT 0,
-  `feature_date` timestamp NULL DEFAULT NULL,
-  `photo` varchar(255) NOT NULL,
+  `description` mediumtext COLLATE utf8mb4_general_ci,
+  `property_type` varchar(555) COLLATE utf8mb4_general_ci NOT NULL,
+  `handover_date` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `payment_plan` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `building_name` varchar(25) COLLATE utf8mb4_general_ci NOT NULL,
+  `unit_count` int NOT NULL,
+  `floor_count` int NOT NULL,
+  `parking_space` int NOT NULL,
+  `down_payment` int NOT NULL,
+  `during_construction` int NOT NULL,
+  `on_handover` int NOT NULL,
+  `announcement_date` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `construction_started` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `booking_started` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `expected_handover` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `amenities` varchar(555) COLLATE utf8mb4_general_ci NOT NULL,
+  `bed_sizes` varchar(555) COLLATE utf8mb4_general_ci NOT NULL,
+  `bed_prices` varchar(555) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_featured` int NOT NULL DEFAULT '0',
+  `photo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -613,8 +612,8 @@ CREATE TABLE `investments` (
 -- Dumping data for table `investments`
 --
 
-INSERT INTO `investments` (`id`, `name`, `user_id`, `location`, `city_id`, `developer`, `starting_price`, `description`, `property_type`, `handover_date`, `payment_plan`, `building_name`, `unit_count`, `floor_count`, `parking_space`, `down_payment`, `during_construction`, `on_handover`, `announcement_date`, `construction_started`, `booking_started`, `expected_handover`, `amenities`, `bed_sizes`, `bed_prices`, `is_featured`, `feature_date`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'This is test Investement', 1, 'Barking, United Kingdom', 58, 'Stathum Builder', 450, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Apartment,Villas', '2024-07-19', 'Nice', 'Kolpo', 5, 6, 5, 10, 20, 50, '2024-07-25', '2024-07-22', '2024-07-11', '2024-07-31', 'Hello, Here, How', '{\"onebed\":[\"21\",\"15\"],\"twobed\":[null],\"threebed\":[null]}', '{\"onebed\":[\"250\",\"150\"],\"twobed\":[null],\"threebed\":[null]}', 0, NULL, '', '2024-07-06 09:18:46', '2024-07-06 09:18:46');
+INSERT INTO `investments` (`id`, `name`, `user_id`, `location`, `city_id`, `developer`, `starting_price`, `description`, `property_type`, `handover_date`, `payment_plan`, `building_name`, `unit_count`, `floor_count`, `parking_space`, `down_payment`, `during_construction`, `on_handover`, `announcement_date`, `construction_started`, `booking_started`, `expected_handover`, `amenities`, `bed_sizes`, `bed_prices`, `is_featured`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'This is test Investement', 1, 'Barking, United Kingdom', 58, 'Stathum Builder', 450, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Apartment,Villas', '2024-07-19', 'Nice', 'Kolpo', 5, 6, 5, 10, 20, 50, '2024-01-25', '2024-03-22', '2024-07-11', '2024-07-31', 'Hello, Here, How', '{\"onebed\":[\"21\",\"15\"],\"twobed\":[\"23\",\"21\"],\"threebed\":[\"45\",\"65\"]}', '{\"onebed\":[\"250\",\"150\"],\"twobed\":[\"230\",\"160\"],\"threebed\":[\"260\",\"170\"]}', 0, '2mrkHQ1719339231.jpg,F5vG7b1719339231.jpg,t4Y9LA1719339231.jpg', '2024-07-06 09:18:46', '2024-07-06 09:18:46');
 
 -- --------------------------------------------------------
 
@@ -623,12 +622,12 @@ INSERT INTO `investments` (`id`, `name`, `user_id`, `location`, `city_id`, `deve
 --
 
 CREATE TABLE `languages` (
-  `id` int(191) NOT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT 0,
+  `id` int NOT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT '0',
   `language` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `file` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rtl` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `rtl` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `languages`
@@ -645,12 +644,12 @@ INSERT INTO `languages` (`id`, `is_default`, `language`, `file`, `rtl`) VALUES
 --
 
 CREATE TABLE `members` (
-  `id` int(191) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `designation` varchar(191) DEFAULT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `photo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `members`
@@ -667,9 +666,9 @@ INSERT INTO `members` (`id`, `name`, `designation`, `message`, `photo`) VALUES
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -691,13 +690,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `pages` (
-  `id` int(191) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_tag` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `meta_tag` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `meta_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pages`
@@ -713,8 +712,8 @@ INSERT INTO `pages` (`id`, `title`, `slug`, `details`, `meta_tag`, `meta_descrip
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -725,8 +724,8 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -737,17 +736,17 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `payment_gateways` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `subtitle` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` enum('manual','automatic') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'manual',
-  `information` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `information` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `keyword` varchar(191) DEFAULT NULL,
   `currency_id` varchar(191) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `status` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment_gateways`
@@ -765,12 +764,12 @@ INSERT INTO `payment_gateways` (`id`, `subtitle`, `title`, `details`, `name`, `t
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -783,14 +782,14 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `plans` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `price` int(20) NOT NULL,
-  `days` int(20) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `contact_limit` int(20) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `price` int NOT NULL,
+  `days` int NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contact_limit` int NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -800,9 +799,10 @@ CREATE TABLE `plans` (
 --
 
 INSERT INTO `plans` (`id`, `title`, `slug`, `price`, `days`, `description`, `contact_limit`, `status`, `created_at`, `updated_at`) VALUES
-(3, 'BASIC PACKAGE', 'basic-package', 49, 90, '<p>This is Basic Packages</p>', 50, 1, '2023-11-17 03:54:35', '2023-11-17 03:54:35'),
-(4, 'PLATINUM PACKAGE', 'platinum-package', 149, 90, '<p>This is Platinum Package</p>', 90, 1, '2023-11-17 03:55:39', '2023-11-17 03:55:39'),
-(5, 'STANDARD PACKAGE', 'standard-package', 199, 90, '<p>This is Standard Package</p>', 90, 1, '2023-11-17 03:57:28', '2023-11-17 03:57:28');
+(3, 'Bronze', 'bronze', 10, 90, '<p>This is Basic Packages</p>', 35, 1, '2023-11-17 03:54:35', '2024-07-10 11:59:59'),
+(4, 'Silver', 'silver', 15, 90, '<p>This is Platinum Package</p>', 60, 1, '2023-11-17 03:55:39', '2024-07-10 11:59:30'),
+(5, 'Gold', 'gold', 20, 90, '<p>This is Standard Package</p>', 300, 1, '2023-11-17 03:57:28', '2024-07-10 12:01:59'),
+(6, 'Platinum', 'platinum', 30, 120, '<p>This is standard package</p>', 100000, 1, '2024-07-10 12:03:17', '2024-07-10 12:03:17');
 
 -- --------------------------------------------------------
 
@@ -811,13 +811,13 @@ INSERT INTO `plans` (`id`, `title`, `slug`, `price`, `days`, `description`, `con
 --
 
 CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL,
-  `user_id` int(55) NOT NULL,
-  `star_rating` int(5) NOT NULL,
-  `review` text NOT NULL,
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `star_rating` int NOT NULL,
+  `review` text COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `owner_id` int(5) NOT NULL
+  `owner_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -835,10 +835,10 @@ INSERT INTO `ratings` (`id`, `user_id`, `star_rating`, `review`, `created_at`, `
 --
 
 CREATE TABLE `roles` (
-  `id` int(191) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `section` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `section` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -847,13 +847,13 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `seo_settings` (
-  `id` bigint(20) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `meta_tag` text DEFAULT NULL,
-  `meta_description` text DEFAULT NULL,
-  `meta_image` varchar(255) DEFAULT NULL,
-  `google_analytics` varchar(255) DEFAULT NULL,
-  `facebook_pixel` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `meta_tag` text COLLATE utf8mb4_general_ci,
+  `meta_description` text COLLATE utf8mb4_general_ci,
+  `meta_image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `google_analytics` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `facebook_pixel` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -870,21 +870,21 @@ INSERT INTO `seo_settings` (`id`, `title`, `meta_tag`, `meta_description`, `meta
 --
 
 CREATE TABLE `services` (
-  `id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `description` longtext DEFAULT NULL,
-  `city_id` int(25) NOT NULL,
-  `budget` double DEFAULT 0,
-  `photo` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT 0,
-  `town_id` int(25) DEFAULT NULL,
-  `postcode` varchar(255) DEFAULT NULL,
-  `start_date` varchar(255) DEFAULT NULL,
+  `id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_general_ci,
+  `city_id` int NOT NULL,
+  `budget` double DEFAULT '0',
+  `photo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` int NOT NULL DEFAULT '0',
+  `town_id` int DEFAULT NULL,
+  `postcode` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `start_date` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `is_featured` tinyint(4) NOT NULL DEFAULT 0,
+  `is_featured` tinyint NOT NULL DEFAULT '0',
   `feature_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -894,7 +894,8 @@ CREATE TABLE `services` (
 
 INSERT INTO `services` (`id`, `category_id`, `title`, `slug`, `description`, `city_id`, `budget`, `photo`, `user_id`, `town_id`, `postcode`, `start_date`, `created_at`, `updated_at`, `is_featured`, `feature_date`) VALUES
 (3, 2, 'Innovative Abstract Icon Logo Design', 'innovative-abstract-icon-logo-design', 'Website Design: Develop a modern, user-friendly, and responsive website that reflects our consultancy\'s professionalism and expertise. Design a clean and intuitive layout with easy navigation to showcase our services, team, and contact information. Integration of essential features, such as a contact form, social media links, and a blog section. Logo Design: Create a unique and memorable logo that represents our consultancy\'s values and vision. Ensure the logo is versatile and scalable for various marketing materials and platforms. Provide multiple', 52, 500, 'JDY8lg1711129812.png,XuKovV1711129812.png', 1, 56, '1230', '2024-03-28', '2024-03-04 06:31:26', '2024-04-03 10:07:46', 1, '2024-04-10 10:07:45'),
-(6, 2, 'With Start date', 'with-start-date', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 62, 50, '967665631711001434.png', 1, 100, '3500', '2024-03-29', '2024-03-21 00:10:36', '2024-04-03 10:11:11', 1, '2024-04-10 10:11:11');
+(6, 2, 'With Start date', 'with-start-date', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 62, 50, '967665631711001434.png', 1, 100, '3500', '2024-03-29', '2024-03-21 00:10:36', '2024-04-03 10:11:11', 1, '2024-04-10 10:11:11'),
+(7, 5, 'I need a bathroom fitter', 'i-need-a-bathroom-fitter', 'I am looking for someone to refurbish my bathroom.', 29, 0, 'DylYdP1720891829.jpg', 1, 28374, 'IG10 5AP', NULL, '2024-07-13 11:30:29', '2024-07-13 11:30:29', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -903,18 +904,80 @@ INSERT INTO `services` (`id`, `category_id`, `title`, `slug`, `description`, `ci
 --
 
 CREATE TABLE `service_categories` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `status` int(2) NOT NULL DEFAULT 1
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `status` int NOT NULL DEFAULT '1',
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `service_categories`
 --
 
-INSERT INTO `service_categories` (`id`, `name`, `slug`, `status`) VALUES
-(2, 'Hello', 'hello', 1);
+INSERT INTO `service_categories` (`id`, `name`, `slug`, `status`, `photo`) VALUES
+(2, 'Aerial Network', 'aerial-network', 1, NULL),
+(3, 'Air Condition', 'air-condition', 1, NULL),
+(4, 'Architects', 'architects', 1, NULL),
+(5, 'Bathroom Fitters', 'bathroom-fitters', 1, NULL),
+(6, 'Bricklayers', 'bricklayers', 1, NULL),
+(7, 'Builders', 'builders', 1, NULL),
+(8, 'Building Refurbishments', 'building-refurbishments', 1, NULL),
+(9, 'Cabinet Makers & Fitters', 'cabinet-makers-fitters', 1, NULL),
+(10, 'Carpenters & Joiners', 'carpenters-joiners', 1, NULL),
+(11, 'Carpet & Flooring Fitters', 'carpet-flooring-fitters', 1, NULL),
+(12, 'Chimney Repair Specialist', 'chimney-repair-specialist', 1, NULL),
+(13, 'Cleaners', 'cleaners', 1, NULL),
+(14, 'Conservatory Installers', 'conservatory-installers', 1, NULL),
+(15, 'Conveyancer', 'conveyancer', 1, NULL),
+(16, 'Conversion Specialist', 'conversion-specialist', 1, NULL),
+(17, 'Damp Proofers', 'damp-proofers', 1, NULL),
+(18, 'Decking Installers', 'decking-installers', 1, NULL),
+(19, 'Demolition Services', 'demolition-services', 1, NULL),
+(20, 'Door Fitters', 'door-fitters', 1, NULL),
+(21, 'Drainage', 'drainage', 1, NULL),
+(22, 'Driveways', 'driveways', 1, NULL),
+(23, 'Electricians', 'electricians', 1, NULL),
+(24, 'Elevator Maintenance', 'elevator-maintenance', 1, NULL),
+(25, 'Fascias & Soffits Installers', 'fascias-soffits-installers', 1, NULL),
+(26, 'Fencer', 'fencer', 1, NULL),
+(27, 'Fireplace Installers', 'fireplace-installers', 1, NULL),
+(28, 'Garage Conversion Specialist', 'garage-conversion-specialist', 1, NULL),
+(29, 'Gardeners & Landscapers', 'gardeners-landscapers', 1, NULL),
+(30, 'Gas Engineers', 'gas-engineers', 1, NULL),
+(31, 'Glaziers', 'glaziers', 1, NULL),
+(32, 'Groundworkers', 'groundworkers', 1, NULL),
+(33, 'Guttering Installers', 'guttering-installers', 1, NULL),
+(34, 'Handyman', 'handyman', 1, NULL),
+(35, 'Heating Engineers', 'heating-engineers', 1, NULL),
+(36, 'Home & Extension Builders', 'home-extension-builders', 1, NULL),
+(37, 'Insulation Company', 'insulation-company', 1, NULL),
+(38, 'Interior Designers', 'interior-designers', 1, NULL),
+(39, 'Kitchen Fitters', 'kitchen-fitters', 1, NULL),
+(40, 'Locksmiths', 'locksmiths', 1, NULL),
+(41, 'Loft Conversion', 'loft-conversion', 1, NULL),
+(42, 'Maids and Nannies', 'maids-and-nannies', 1, NULL),
+(43, 'Metalworkers', 'metalworkers', 1, NULL),
+(44, 'Mortgage Advisors', 'mortgage-advisors', 1, NULL),
+(45, 'Painters & Decorators', 'painters-decorators', 1, NULL),
+(46, 'Pest Controllers', 'pest-controllers', 1, NULL),
+(47, 'Plasterers & Renderers', 'plasterers-renderers', 1, NULL),
+(48, 'Plumbers', 'plumbers', 1, NULL),
+(49, 'Property Finance  Company', 'property-finance-company', 1, NULL),
+(50, 'Property Insurers', 'property-insurers', 1, NULL),
+(51, 'Property Lawyers', 'property-lawyers', 1, NULL),
+(52, 'Removals', 'removals', 1, NULL),
+(53, 'Repointing Specialist', 'repointing-specialist', 1, NULL),
+(54, 'Roofers', 'roofers', 1, NULL),
+(55, 'Security System Installers', 'security-system-installers', 1, NULL),
+(56, 'Stoneworkers & Stonemasons', 'stoneworkers-stonemasons', 1, NULL),
+(57, 'Stove Fitters', 'stove-fitters', 1, NULL),
+(58, 'Swimming Pool', 'swimming-pool', 1, NULL),
+(59, 'Tilers', 'tilers', 1, NULL),
+(60, 'Tree Surgeons', 'tree-surgeons', 1, NULL),
+(61, 'Waste & Rubbish Clearance', 'waste-rubbish-clearance', 1, NULL),
+(62, 'Window Fitters', 'window-fitters', 1, NULL),
+(63, 'Others', 'others', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -923,18 +986,18 @@ INSERT INTO `service_categories` (`id`, `name`, `slug`, `status`) VALUES
 --
 
 CREATE TABLE `socialsettings` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `fclient_id` text DEFAULT NULL,
-  `fclient_secret` text DEFAULT NULL,
-  `fredirect` text DEFAULT NULL,
-  `gclient_id` text DEFAULT NULL,
-  `gclient_secret` text DEFAULT NULL,
-  `gredirect` text DEFAULT NULL,
-  `website_url` varchar(191) DEFAULT NULL,
-  `social_icons` text DEFAULT NULL,
-  `social_urls` text DEFAULT NULL,
-  `facebook_check` tinyint(4) NOT NULL DEFAULT 0,
-  `google_check` tinyint(4) NOT NULL DEFAULT 0
+  `id` int UNSIGNED NOT NULL,
+  `fclient_id` text COLLATE utf8mb4_unicode_ci,
+  `fclient_secret` text COLLATE utf8mb4_unicode_ci,
+  `fredirect` text COLLATE utf8mb4_unicode_ci,
+  `gclient_id` text COLLATE utf8mb4_unicode_ci,
+  `gclient_secret` text COLLATE utf8mb4_unicode_ci,
+  `gredirect` text COLLATE utf8mb4_unicode_ci,
+  `website_url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `social_icons` text COLLATE utf8mb4_unicode_ci,
+  `social_urls` text COLLATE utf8mb4_unicode_ci,
+  `facebook_check` tinyint NOT NULL DEFAULT '0',
+  `google_check` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -951,10 +1014,10 @@ INSERT INTO `socialsettings` (`id`, `fclient_id`, `fclient_secret`, `fredirect`,
 --
 
 CREATE TABLE `social_links` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(191) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `link` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -974,9 +1037,9 @@ INSERT INTO `social_links` (`id`, `name`, `icon`, `link`) VALUES
 --
 
 CREATE TABLE `states` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `town` varchar(555) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `states`
@@ -44532,9 +44595,9 @@ INSERT INTO `states` (`id`, `town`) VALUES
 --
 
 CREATE TABLE `subscribers` (
-  `id` int(191) NOT NULL,
+  `id` int NOT NULL,
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subscribers`
@@ -44556,19 +44619,19 @@ INSERT INTO `subscribers` (`id`, `email`) VALUES
 --
 
 CREATE TABLE `subscriptions` (
-  `id` int(11) NOT NULL,
-  `transaction_no` varchar(255) DEFAULT NULL,
-  `charge_id` varchar(255) DEFAULT NULL,
-  `txnid` varchar(255) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `plan_id` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `transaction_no` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `charge_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `txnid` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `plan_id` int DEFAULT NULL,
   `price` double NOT NULL,
-  `method` varchar(191) DEFAULT NULL,
-  `currency_id` int(11) DEFAULT NULL,
+  `method` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `currency_id` int DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `notify_id` int(11) DEFAULT NULL,
-  `payment_status` varchar(191) NOT NULL DEFAULT 'pending',
-  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `notify_id` int DEFAULT NULL,
+  `payment_status` varchar(191) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
+  `status` tinyint NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44593,19 +44656,19 @@ INSERT INTO `subscriptions` (`id`, `transaction_no`, `charge_id`, `txnid`, `user
 --
 
 CREATE TABLE `sub_categories` (
-  `id` int(11) NOT NULL,
-  `category_id` int(22) NOT NULL,
-  `name` varchar(191) NOT NULL,
-  `slug` varchar(191) NOT NULL,
-  `attributes` varchar(555) DEFAULT NULL,
-  `bedroom` varchar(255) DEFAULT NULL,
-  `bathrooms` varchar(255) DEFAULT NULL,
-  `receptions` varchar(255) DEFAULT NULL,
-  `required` varchar(255) DEFAULT NULL,
-  `is_bedrooms` int(5) NOT NULL DEFAULT 0,
-  `is_bathrooms` int(5) NOT NULL DEFAULT 0,
-  `is_receptions` int(5) NOT NULL DEFAULT 0,
-  `is_required` int(5) NOT NULL DEFAULT 0
+  `id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,
+  `attributes` varchar(555) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bedroom` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bathrooms` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `receptions` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `required` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_bedrooms` int NOT NULL DEFAULT '0',
+  `is_bathrooms` int NOT NULL DEFAULT '0',
+  `is_receptions` int NOT NULL DEFAULT '0',
+  `is_required` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -44633,20 +44696,20 @@ INSERT INTO `sub_categories` (`id`, `category_id`, `name`, `slug`, `attributes`,
 --
 
 CREATE TABLE `teams` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `slug` varchar(191) DEFAULT NULL,
-  `designation` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `bio` text DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `website` varchar(255) DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `linkedin` varchar(255) DEFAULT NULL,
-  `instagram` varchar(255) DEFAULT NULL
+  `id` bigint NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bio` text COLLATE utf8mb4_general_ci,
+  `phone` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `linkedin` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -44663,11 +44726,11 @@ INSERT INTO `teams` (`id`, `name`, `slug`, `designation`, `photo`, `bio`, `phone
 --
 
 CREATE TABLE `testimonials` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `designation` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `message` text DEFAULT NULL
+  `id` bigint NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -44686,14 +44749,14 @@ INSERT INTO `testimonials` (`id`, `name`, `designation`, `photo`, `message`) VAL
 --
 
 CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL,
-  `trnx_number` varchar(255) DEFAULT NULL,
-  `user_id` int(25) NOT NULL,
+  `id` int NOT NULL,
+  `trnx_number` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` int NOT NULL,
   `amount` double NOT NULL,
-  `currency_id` int(25) NOT NULL,
-  `type` varchar(5) DEFAULT NULL,
-  `remark` varchar(255) DEFAULT NULL,
-  `details` text DEFAULT NULL,
+  `currency_id` int NOT NULL,
+  `type` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `remark` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `details` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44719,30 +44782,30 @@ INSERT INTO `transactions` (`id`, `trnx_number`, `user_id`, `amount`, `currency_
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(191) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `zip` varchar(25) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `email_verified` enum('Yes','No') DEFAULT 'No',
-  `verification_link` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `balance` double NOT NULL DEFAULT 0,
-  `is_plan` int(11) DEFAULT NULL,
-  `is_verify` int(2) NOT NULL DEFAULT 0,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `zip` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `email_verified` enum('Yes','No') COLLATE utf8mb4_unicode_ci DEFAULT 'No',
+  `verification_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `balance` double NOT NULL DEFAULT '0',
+  `is_plan` int DEFAULT NULL,
+  `is_verify` int NOT NULL DEFAULT '0',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `skills` varchar(255) DEFAULT NULL,
-  `kyc_status` int(5) NOT NULL,
-  `portfolio` varchar(55) DEFAULT NULL
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `skills` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kyc_status` int NOT NULL DEFAULT '0',
+  `portfolio` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -44750,12 +44813,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `country`, `city`, `address`, `zip`, `status`, `email_verified`, `verification_link`, `password`, `balance`, `is_plan`, `is_verify`, `remember_token`, `created_at`, `updated_at`, `description`, `skills`, `kyc_status`, `portfolio`) VALUES
-(1, 'User Hasan', NULL, 'user@gmail.com', '1706536283.png', '+8801976814812', 'Belarus', 'United Kingdom', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$bpzr5I3WnA1FKp7SR0meoeJgmXT5Ux7DovdWCUquPvWdNgjXZHS5i', 900.5495728445, 5, 0, 'e5BcK6ppgopsErVnEXW7yZL9JEQ75zq2JG0SZYG1EWKoRXqEKt03O9ODupWg', '2024-06-13 15:57:15', '2024-06-13 09:56:26', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'fghsdgh,sdfgsefg', 2, 'xTVTCJ1718292607.jpg'),
+(1, 'User Hasan', NULL, 'user@gmail.com', '1720891533.png', '+8801976814812', 'Belarus', 'United Kingdom', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$bpzr5I3WnA1FKp7SR0meoeJgmXT5Ux7DovdWCUquPvWdNgjXZHS5i', 900.5495728445, 5, 0, 'ukIRkhdN7y3NvmKPefEjlg95tZ9bNHPkCshOH2wQvayjJMCjk0veqAoGRyOK', '2024-06-13 15:57:15', '2024-07-13 11:25:33', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'Bathroom installation,Building,Sales', 2, 'Rq8yxz1720891533.png'),
 (4, 'User Hasan', NULL, 'showrabhasan7515@gmail.com', 'JIC1588136853people.png', '17283320', 'Belarus', 'UserRequest', 'Tangail,Dhaka,Bangladesh', '1234', 1, NULL, NULL, '$2y$10$Muu9xoTvxsx6mHh3yjqLTecTKADrG7YMYmGIqWIuz.YbDoR97Cqw.', 0, NULL, 0, NULL, '2024-06-12 18:00:00', '2021-12-14 00:04:01', NULL, NULL, 0, NULL),
 (5, 'Test Product1', NULL, 'shaon@gmail.com', NULL, '172833200', NULL, NULL, NULL, NULL, 1, 'Yes', '521dabcadf15fabf6eb8d08bd960942a', '$2a$12$6eVkxqi9PbsGAg.uRBoyOOND8oZaCH8IHtss5FFVPb0k.64u1aSW.', 0, NULL, 0, 'rLpl6P782AXzb2zKX8qqc62W0TblP8v0nMK4yC7JU8UF76rHAQYnx7ZTeULP', '2021-12-18 23:30:31', '2021-12-18 23:30:31', NULL, NULL, 0, NULL),
 (8, 'pranab Sarker', 'pronob', 'pronobsarker@gmail.com', '1711031757.png', '01976814812', NULL, 'Comilla', 'Songraish, Adarsha Sadar, Comilla', '3500', 1, 'No', NULL, '$2y$10$cGZdaxAzxk0lpyXWbGfukuLxnvyr1HJw7Y39wAx092ReKNu1S.BFC', 0, NULL, 0, 'VC55wNik6F8vDeUpGOMzKwDA6nn4RS4nEld35ZBGbU8deBZ1BiXsooihlVpM', '2023-11-11 01:01:54', '2024-03-21 08:35:57', 'I am a web developer specialize in building web applications using the Laravel PHP framework. I am skilled at HTML, CSS, Bootstrap, Javascript, Jquery, PHP and so on. I can work on a variety of projects, from small websites to large-scale web applications, and they are often responsible for the entire development lifecycle, from design and development to testing and deployment. I am excited for the chance to help you with my back-end and front-end expertise and experience. I look forward to the opportunity to making you smile as well.', 'sdfgsefg,fghsdgh,fdgsdhdfgh', 0, NULL),
 (9, 'software', 'softbakery', 'softwarebakery71@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '1444e0ba77c86e8b08b8d301e56e1ac4', '$2y$10$bKwgbvt8lUaCd3EglY5xMe8y4aFAKCv9vZWV8AxDh0NY5Z.KpJ0I2', 0, NULL, 0, NULL, '2024-01-30 08:39:31', '2024-01-30 08:39:31', NULL, NULL, 0, NULL),
-(10, 'pranab Sarker', 'newuser', 'pronobsarker1600@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '415ced504fab6c810410df3e11ed4098', '$2y$10$KCMBf.zsRLIuHfM0ghGaj.MRrSkY605TMzAlNDS4XSm9ezaJWvnYa', 0, NULL, 0, NULL, '2024-01-30 08:42:38', '2024-01-30 08:42:38', NULL, NULL, 0, NULL);
+(10, 'pranab Sarker', 'newuser', 'pronobsarker1600@gmail.com', NULL, '+8801976814812', NULL, NULL, NULL, NULL, 1, 'No', '415ced504fab6c810410df3e11ed4098', '$2y$10$KCMBf.zsRLIuHfM0ghGaj.MRrSkY605TMzAlNDS4XSm9ezaJWvnYa', 0, NULL, 0, NULL, '2024-01-30 08:42:38', '2024-01-30 08:42:38', NULL, NULL, 0, NULL),
+(11, 'baythub', 'pronobfsdf', 'baythubuk@gmail.com', NULL, '01976814812', NULL, NULL, NULL, NULL, 1, 'Yes', '3f5015cd860a1a54ba64cbe2d8dcd14a', '$2y$10$DtIPg8sW3Ds3FlX97r2HjeWbFsJBMcaUdIJP4z3eCyeHzB32RCGHi', 0, NULL, 0, NULL, '2024-07-13 21:15:18', '2024-07-13 21:23:57', NULL, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -44764,14 +44828,14 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `photo`, `phone`, `count
 --
 
 CREATE TABLE `user_contacts` (
-  `id` int(11) NOT NULL,
-  `ticket_number` varchar(255) DEFAULT NULL,
-  `property_id` int(25) DEFAULT NULL,
-  `user_id` int(25) DEFAULT NULL,
-  `owner_id` int(25) DEFAULT NULL,
-  `messages` text DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `is_service` int(2) DEFAULT 0,
+  `id` int NOT NULL,
+  `ticket_number` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `property_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `owner_id` int DEFAULT NULL,
+  `messages` text COLLATE utf8mb4_general_ci,
+  `phone` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_service` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44783,12 +44847,12 @@ CREATE TABLE `user_contacts` (
 --
 
 CREATE TABLE `user_owner_conversations` (
-  `id` int(11) NOT NULL,
-  `contact_id` int(25) NOT NULL,
-  `user_id` int(25) NOT NULL,
-  `owner_id` int(25) NOT NULL,
-  `messages` text DEFAULT NULL,
-  `is_service` int(2) DEFAULT 0,
+  `id` int NOT NULL,
+  `contact_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `owner_id` int NOT NULL,
+  `messages` text COLLATE utf8mb4_general_ci,
+  `is_service` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44800,13 +44864,13 @@ CREATE TABLE `user_owner_conversations` (
 --
 
 CREATE TABLE `verifications` (
-  `id` int(11) NOT NULL,
-  `user_id` int(15) NOT NULL,
-  `qualification` varchar(255) DEFAULT NULL,
-  `criminal_record` varchar(255) DEFAULT NULL,
-  `telephone` varchar(255) DEFAULT NULL,
-  `id_image` varchar(255) DEFAULT NULL,
-  `status` tinyint(2) NOT NULL DEFAULT 0
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `qualification` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `criminal_record` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telephone` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -44823,10 +44887,10 @@ INSERT INTO `verifications` (`id`, `user_id`, `qualification`, `criminal_record`
 --
 
 CREATE TABLE `wishlists` (
-  `id` int(11) NOT NULL,
-  `user_id` int(25) NOT NULL,
-  `advert_id` int(25) NOT NULL,
-  `is_job` int(11) NOT NULL DEFAULT 0
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `advert_id` int NOT NULL,
+  `is_job` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -45117,229 +45181,235 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `abouts`
 --
 ALTER TABLE `abouts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `admin_languages`
 --
 ALTER TABLE `admin_languages`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `blog_categories`
 --
 ALTER TABLE `blog_categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `contact_messages`
 --
 ALTER TABLE `contact_messages`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `email_templates`
 --
 ALTER TABLE `email_templates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `faqs`
 --
 ALTER TABLE `faqs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `generalsettings`
 --
 ALTER TABLE `generalsettings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `header_sections`
 --
 ALTER TABLE `header_sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `investments`
 --
 ALTER TABLE `investments`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `payment_gateways`
 --
 ALTER TABLE `payment_gateways`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `plans`
 --
 ALTER TABLE `plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `seo_settings`
 --
 ALTER TABLE `seo_settings`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `service_categories`
 --
 ALTER TABLE `service_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `socialsettings`
 --
 ALTER TABLE `socialsettings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `social_links`
 --
 ALTER TABLE `social_links`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43525;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43525;
 
 --
 -- AUTO_INCREMENT for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_contacts`
 --
 ALTER TABLE `user_contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_owner_conversations`
 --
 ALTER TABLE `user_owner_conversations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `verifications`
 --
 ALTER TABLE `verifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -27,6 +27,7 @@
          <div class="table-responsive p-3">
             <table class="table table-striped">
                <tr>
+                   <th>{{ __('Photo') }}</th>
                    <th>@lang('Name')</th>
                    <th>@lang('Slug')</th>
                    <th>@lang('Status')</th>
@@ -34,7 +35,9 @@
                </tr>
                @forelse ($categories as $item)
                    <tr>
-
+                       <td data-label="{{ __('Photo') }}">
+                        <img src="{{ getPhoto($item->photo) }}" alt="" width="100">
+                    </td>
                         <td data-label="@lang('Name')">
                           {{$item->name}}
                         </td>
@@ -80,10 +83,26 @@
                   </button>
             </div>
             <div class="modal-body">
+                
+                <div class="col-md-12 ShowImage mb-3  text-center">
+                  <img src="{{ getPhoto('no-image.jpg') }}" class="img-fluid" alt="image" width="400">
+               </div>
+                
+                
                <div class="form-group">
                   <label>@lang('Name')</label>
                   <input class="form-control" type="text" name="name">
                </div>
+               
+               <div class="form-group">
+                  <label for="image">{{ __('Photo') }}</label>
+                  <span class="ml-3">{{ __('(Extension:jpeg,jpg,png)') }}</span>
+                  <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="photo" id="image" accept="image/*" required>
+                      <label class="custom-file-label" for="photo">{{ __('Choose file') }}</label>
+                  </div>
+              </div>
+              
                <div class="form-group">
                   <label>@lang('Status')</label>
                   <select name="status" class="form-control">
@@ -114,10 +133,23 @@
                   </button>
             </div>
             <div class="modal-body">
+                
+                <div class="col-md-12 ShowImage mb-3  text-center">
+                  <img src="{{ getPhoto('') }}" class="img-fluid" alt="image" width="400">
+               </div>
                <div class="form-group">
                   <label>@lang('Name')</label>
                   <input class="form-control" type="text" name="name">
                </div>
+               
+               <div class="form-group">
+                  <label for="image">{{ __('Photo') }}</label>
+                  <span class="ml-3">{{ __('(Extension:jpeg,jpg,png)') }}</span>
+                  <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="photo" id="image" accept="image/*" >
+                      <label class="custom-file-label" for="photo">{{ __('Choose file') }}</label>
+                  </div>
+              </div>
                <div class="form-group">
                   <label>@lang('Status')</label>
                   <select name="status" class="form-control">
@@ -165,6 +197,9 @@
           var data = $(this).data('item')
           console.log(data);
           $('#edit').find('input[name=name]').val(data.name)
+          var get = "{{ getPhoto('') }}"
+         var photo = get.replace('default.png',data.photo)
+            $('#edit').find('.ShowImage img').attr('src',photo)
           $('#edit').find('select[name=status]').val(data.status)
           $('#edit').find('form').attr('action',$(this).data('route'))
           $('#edit').modal('show')

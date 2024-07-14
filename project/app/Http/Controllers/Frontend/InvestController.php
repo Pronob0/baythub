@@ -133,6 +133,13 @@ class InvestController extends Controller
         $cities = Country::get();
         return view('user.investment.edit',compact('item','cities'));
     }
+    
+    public function investDetails($id){
+        
+        $item= Investment::findOrFail($id);
+        
+        return view('frontend.invest.invest-details',compact('item'));
+    }
 
 
 }
