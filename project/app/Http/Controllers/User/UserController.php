@@ -56,21 +56,26 @@ class UserController extends Controller
             $input['photo'] = $image_name;
         }
 
+
+        
+
         if($request->skills){
             $input['skills'] = implode(',',$request->skills);
 
         }
 
-        if($request->hasFile('portfolio')){
+
+        if ($request->hasFile('portfolio')) {
             $images = $request->file('portfolio');
+            
             $imageArray = array();
-            foreach($images as $image){
-                $image_name =Str::random(6). time().'.'.$image->getClientOriginalExtension();
-                $image->move('assets/images/portfolio',$image_name);
+            foreach ($images as $image) {
+                $image_name = Str::random(6) . time() . '.' . $image->getClientOriginalExtension();
+                $image->move('assets/images/portfolio', $image_name);
                 $imageArray[] = $image_name;
             }
-            $input['portfolio'] = implode(',',$imageArray);
-           
+
+            $input['portfolio'] = implode(',', $imageArray);
         }
         
         $user->fill($input)->save();

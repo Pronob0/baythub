@@ -103,13 +103,13 @@
                             
                                 <div class="mr-2 d-flex head-list">
                                     <div class="budget">
-                                        <p> <small class="fw-bold">Budget : <b>{{ $item->budget }} {{ $currency->sign }}</b></small>   </p>
+                                        <p> <small class="fw-bold">Budget : <b>{{ $item->budget == 0 ? ' ' : $item->budget }} {{ $currency->sign }}</b></small>   </p>
                                     </div>
                                     <div class="date mx-4">
-                                        <p> <small class="fw-bold">Start Date : <b> {{ \Carbon\Carbon::parse($item->start_date)->format('d M Y') }} </b> </small> </p>
+                                        <p> <small class="fw-bold">Start Date : <b> {{ $item->start_date == null ? '' : $item->start_date }} </b> </small> </p>
                                     </div>
                                     <div class="location">
-                                        <p> <small class="fw-bold">Location : <b> {{ $item->location }} </b></small> </p>
+                                        <p> <small class="fw-bold">Location : <b> {{ $item->city->name }} </b></small> </p>
                                     </div>
                                 </div>
                                 

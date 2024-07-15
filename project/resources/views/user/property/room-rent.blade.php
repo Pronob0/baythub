@@ -1,12 +1,23 @@
-
 <div class="form-group col-md-6">
-    <label>@lang('Street Name')</label>
-    <input type="text" class="form-control" placeholder="Street Name" value="{{ $advertisement->street }}" name="street" required>
+    <label>@lang('Select City')</label>
+    {{-- select 2 with all country  --}}
+    <select class="js-example-basic-single" name="city_id">
+        <option value="">Select a City</option>
+        @foreach ($cities as $city)
+            
+        <option {{ $advertisement->city_id== $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+        @endforeach
+        
+    </select>
 </div>
 
 <div class="form-group col-md-6">
-    <label>@lang('Post Code')</label>
-    <input type="text" class="form-control" value="{{ $advertisement->postcode }}" placeholder="Post Code" name="postcode" required>
+    <label>@lang('Select Town')</label>
+    {{-- select 2 with all country  --}}
+    <select id="towns" class="" name="town_id">
+        <option value="{{ $advertisement->town_id }}">{{ $advertisement->town->town }}</option>
+    </select>
+
 </div>
 
 <div class="form-group col-md-6">
@@ -18,10 +29,10 @@
     </select>
 </div>
 
-<div class="form-group col-md-6">
-    <label>@lang('Town')</label>
-    <input type="text" class="form-control" placeholder="Town" value="{{ $advertisement->location }}" name="location" required>
-</div>
+
+@php
+    $tenant = json_decode($advertisement->tenant_details)
+@endphp
 
 <div class="head-ta w-100 mb-4">
     <h3>@lang('Tenancy Details')</h3>
@@ -31,30 +42,30 @@
 
 <div class="form-group col-md-6">
     <label>@lang('Monthly Rent For Single Room ')</label>
-    <input type="number" class="form-control" placeholder="{{ $currency->name }}" name="monthly_rent" value="{{ $advertisement->monthly_rent }}" required>
+    <input type="number" class="form-control" placeholder="{{ $currency->name }}" name="monthly_rent" value="{{ $tenant->monthly_rent ? $tenant->monthly_rent : '' }}" required>
 </div>
  
 <div class="form-group col-md-6">
     <label>@lang('Minimum Tenancy Length ')</label>
-    <input type="number" class="form-control" value="{{ $advertisement->month }}" placeholder="Months" name="month" required>
+    <input type="number" class="form-control" value="{{ $tenant->month ? $tenant->month : '' }}" placeholder="Months" name="month" required>
 </div>
 
 <div class="form-group col-md-6">
     <label>@lang('Weekly Rent For Single Room')</label>
-    <input type="number" class="form-control" value="{{ $advertisement->weekly_rent }}" placeholder="{{ $currency->name }}" name="weekly_rent" required>
+    <input type="number" class="form-control" value="{{ $tenant->weekly_rent ? $tenant->weekly_rent : '' }}" placeholder="{{ $currency->name }}" name="weekly_rent" required>
 </div>
 
 <div class="form-group col-md-6">
     <label>@lang('Maximum Number of Tenants ')</label>
-    <input type="number" class="form-control" placeholder="maximum number of tenants" name="tenance_number" required value="{{ $advertisement->tenance_number }}">
+    <input type="number" class="form-control" placeholder="maximum number of tenants" name="tenance_number" required value="{{ $tenant->tenance_number ? $tenant->tenance_number : '' }}">
 </div>
 <div class="form-group col-md-6">
     <label>@lang('Deposit Amounts')</label>
-    <input type="number" class="form-control" placeholder="{{ $currency->name }}" name="deposit" required value="{{ $advertisement->deposit }}">
+    <input type="number" class="form-control" placeholder="{{ $currency->name }}" name="deposit" required value="{{ $tenant->deposit ? $tenant->deposit : '' }}">
 </div>
 <div class="form-group col-md-6">
     <label>@lang('Earliest Move In Date')</label>
-    <input type="date" class="form-control" placeholder="" name="date" required value="{{ $advertisement->date }}">
+    <input type="date" class="form-control" placeholder="" name="date" required value="{{ $tenant->date }}">
 </div>
 
 <div class="head-ta w-100 mb-4">

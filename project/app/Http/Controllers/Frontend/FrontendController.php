@@ -164,7 +164,7 @@ class FrontendController extends Controller
             
         }
         if($category->id == 12){
-            $items = Advertisement::where('category_id', $category->id)->where('city_id', $id)
+            $items = Advertisement::where('category_id', $category->id)
             // subcategory
             ->when($request->subcategory, function($query, $sub_category){
                 return $query->where('subcategory_id', $sub_category);
@@ -199,7 +199,7 @@ class FrontendController extends Controller
             return view('frontend.browseAdvertCategory', compact('items', 'category', 'subs', 'type','cities'));
         }
         elseif($category->id == 13){
-            $items = Advertisement::where('category_id', $category->id)->where('city_id', $id)
+            $items = Advertisement::where('category_id', $category->id)
 
             ->when($request->property_type, function($query, $sub_category){
                 return $query->where('subcategory_id', $sub_category);
@@ -207,6 +207,9 @@ class FrontendController extends Controller
 
             ->when($request->budget, function($query, $budget){
                 return $query->where('budget', '<=', $budget);
+            })
+            ->when($request->city_id, function($query, $city_id){
+                return $query->where('city_id', $city_id);
             })
 
             ->when($request->bedroom,function($query, $bedroom){
@@ -528,7 +531,7 @@ class FrontendController extends Controller
             'city_id' => 'required|integer',
             'town_id' => 'required|integer',
             'postcode' => 'required|string',
-            'start_date' => 'required|date|after:today',
+            
         ]);
        
 
@@ -538,6 +541,8 @@ class FrontendController extends Controller
                 Toastr::error($error, 'Error');
                
             }
+
+            return redirect()->back();
            
         }
 

@@ -67,7 +67,7 @@
                                         <td>@lang('Start Date')</td>
                                         {{-- carbon with month name  --}}
 
-                                        <td>{{ \Carbon\Carbon::parse($service->start_date)->format('d M Y') }}</td>
+                                        <td>{{ $service->start_date == null ? '' : $service->start_date }}</td>
 
                                     </tr>
 
@@ -82,7 +82,7 @@
                                     </tr>
                                     <tr>
                                         <td>@lang('Budget')</td>
-                                        <td>{{ $service->budget }} {{ $currency->sign }}</td>
+                                        <td>{{ $service->budget == 0 ? '' : $service->budget }} {{ $currency->sign }}</td>
                                     </tr>
 
                                 </tbody>
@@ -105,9 +105,11 @@
                         </div>
 
                     </div>
-
+                    @php
+                    $photo = explode(',',$service->photo);
+                    @endphp
                     <div class="block-wrap">
-                        <img class="img-fluid main" src="{{ getPhoto($service->photo) }}" alt="">
+                         <img class="img-fluid main" style="height:430px; width:100%" src="{{  asset('assets/images/advertisement/'.$photo[0]) }}" alt="">
                     </div>
 
                     <!-- Single Block Wrap -->
@@ -173,11 +175,7 @@
                                 </div>
     
                                 {{-- make three modal button call, email and whatsapp   --}}
-                                <div class="d-flex justify-content-between pb-4 mt-5" style="border-bottom: 1px solid #e4e4e4">
-                                    <a id="user-call" href="javascript:;" class="btn btn-warning btn-sm btn-rounded"><i class="fa fa-phone"></i> @lang('Call')</a>
-                                    <a id="sendcontact" href="javascript:;" class="btn btn-primary btn-sm btn-rounded"><i class="fa fa-envelope"></i> @lang('Email')</a>
-                                    <a href="https://api.whatsapp.com/send?phone={{ $service->user->phone }}" class="btn btn-success btn-sm btn-rounded"><i class="fa-brands fa-whatsapp"></i> @lang('Whatsapp')</a>
-                                </div>
+                               
                                 {{-- view all properties with arrow sign--}}
                                
     
@@ -237,135 +235,10 @@
     <!-- ============================ Property Detail End ================================== -->
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModaluser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">All user</h5>
-
-                </div>
-                <div class="modal-body">
-
-                    @foreach ($user as $item)
-                    <div class="d-flex justify-content-between">
-                        <div class="mr-2 d-flex">
-                            <img src="{{ $item->photo ? getPhoto($item->photo) : getPhoto('no-image.jpg') }}" alt="user photo" class="img-fluid" style="width: 50px; height: 50px; border-radius: 50%; border:1px solid #9f9d9d">
-                            <a href="{{ route('user.details',$item->id) }}" class="mt-2" style="font-size: 12px;margin-left: 10px">{{ $item->name }}</a>
-                            {{-- city  --}}
-                            <a href="#" class="mt-2" style="font-size: 12px;margin-left: 10px">{{ $item->city }}</a>
-                        </div>
-                        <div>
-                            <p>ID: #000{{$item->id}}</p>
-                        </div>
-                    </div>
-                    <hr>
-                    @endforeach
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 
-      {{-- user phone contact info modal  --}}
-      <div class="modal fade" id="usercallInfoModal" tabindex="-1" aria-labelledby="userInfoModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-              <h5 class="modal-title mx-auto" id="userInfoModalLabel">Contact Us</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-            </div>
 
-            <div class="paragraph-modal my-3">
-                <p class="text-center">{{$service->title}}</p>
-            </div>
-
-            {{-- phone number with big green call icon  --}}
-            <div class="mobile-number pb-3  w-75 mx-auto" >
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center">
-                        {{-- image height and width  --}}
-                        <img src="{{asset('assets/images/call-icon.png')}}" alt="" style="height: 30px;width: 30px;">
-                        
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <h4 class="text-center ml-1">{{$service->user->phone}}</h4>
-                    </div>
-                </div>
-            </div>
-            
-
-            <div style="border-bottom: 1px solid rgb(219, 216, 216); border-top: 1px solid rgb(219, 216, 216)" class="d-flex justify-content-center py-2  mb-4 w-75 mx-auto" >
-                    <p class="text-center">Name: <b> {{$service->user->name}} </b></p>
-            </div>
-
-            <div style="border-bottom: 1px solid rgb(219, 216, 216);" class="baythub-quote w-75 py-2  mb-4 mx-auto text-center">
-                <p class="text-center">Please quote property reference</p>
-                <h6>Baythub - 100312-rhoErG</h6> 
-                <p>  when calling us.</p>
-            </div>
-
-            <div class="more-option w-75 py-2  mb-4 mx-auto text-center" style="border-bottom: 1px solid rgb(219, 216, 216);">
-                <p>Do you want more options? Finding the right property for you is easier with notifications.</p>
-            </div>
-
-            {{-- make two button in one row  one is make me notified and anothe is may be later --}}
-            <div class="d-flex justify-content-center w-100 mx-auto">
-                <button class="btn btn-primary w-50">Make me notified</button>
-                <button class="btn btn-warning w-50 btn-close">May be later</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      {{-- User contact info modal end --}}
-
-      {{-- send mail modal open with form  --}}
-        <div class="modal fade" id="sendMailModal" tabindex="-1" aria-labelledby="sendMailModalLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                <h5 class="modal-title mx-auto" id="sendMailModalLabel">Send Mail</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-                </div>
-                <form action="{{ route('contact.property.user') }}" method="Post">
-                    @csrf
-                    <div class="agent-widget mt-3">
-                        <input type="hidden" name="is_service" value="1">
-                        <input type="hidden" name="property_id" value="{{ $service->id }}">
-                        <input type="hidden" name="owner_id" value="{{ $service->user->id }}">
-
-                        <div class="form-group">
-                            <input type="text"  value="{{ auth()->user() ? auth()->user()->email: '' }}" class="form-control" placeholder="Your Email" name="email">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="form-control">I'm interested in this Job.</textarea>
-                        </div>
-
-                        @if($gs->recaptcha == 1)
-                        <div class="form-input mb-3">
-                            {!! NoCaptcha::display() !!}
-                            {!! NoCaptcha::renderJs() !!}
-                            @error('g-recaptcha-response')
-                            <p class="my-2">{{$message}}</p>
-                            @enderror
-                        </div>
-                        @endif
-                        <button type="submit" class="btn btn-theme full-width">Send Message</button>
-                    </div>
-
-                </form>
-            </div>
-            </div>
-        </div>
-        {{-- send mail modal end --}}
 
 
 </section>

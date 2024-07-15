@@ -79,29 +79,25 @@
                                         </div>
                                         <div class="proerty_content">
                                             
-                                            <p class="property_add "><b>@lang('Location: ')</b>{{ $item->street }}</p>
+                                            <h6 class="listing-name text-uppercase"><a class="text-warning" href="{{ route('advertise.details',$item->id) }}"> <b><i class="fa-solid fa-location-dot"></i> </b> {{ $item->city->name }}, {{ $item->town->town }}</a></h6>
                                             <div class="property_meta">
                                                 <div class="list-fx-features">
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""><b>@lang('Property Type:') </b></small> <br>
-                                                        <small class="">{{ $item->property_type }} </small>
+                                                       <small class=""><i class="fa-solid fa-house"></i> {{ $item->property_type }} </small>
                                                     </div>
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""><b>Region: </b></small> <br>
-                                                        <small class="">{{$item->region}}</small>
+                                                       <small class=""><i class="fa-solid fa-location-dot"></i> {{ $item->town->town }}</small>
                                                     </div>
                                                     @php
-                            $cost = json_decode($item->cost,true);
-                        @endphp
+                                                    $cost = json_decode($item->cost,true);
+                                                    @endphp
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""> <b>@lang('Potential Rent:')</b></small> <br>
-                                                        <small class=""> {{ $currency->sign }} {{ $cost['potential_rent']  }}</small>
+                                                       <small class=""> <i class="fa-solid fa-money-bill"></i> {{ $currency->sign }}{{ $cost['potential_rent']  }}</small>
                                                     </div>
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""><b>Bedroom:</b></small> <br>
-                                                        <small class="">{{ $item->bedroom }}</small>
+                                                       <small class=""><i class="fa-solid fa-bed"></i> {{ $item->bedroom }} Beds</small>
                                                     </div>
-                                                </div>
+                                                 </div>
                                             </div>
                                             <div class="property_links w-100">
                                                 <a href="{{ route('advertise.details',$item->id) }}" class="btn btn-theme-light w-100">@lang('More Detail')</a>
@@ -130,13 +126,13 @@
                                         </div>
                                         <div class="proerty_content">
                                             
-                                            <p class="property_add "><b>@lang('Location: ')</b>{{ $item->street }}</p>
+                                            <p class="listing-name text-uppercase"><a href="{{ route('advertise.details',$item->id) }}"> <b><i class="fa-solid fa-location-dot"></i></b> {{ $item->city->name }}, {{ $item->town->town }}</a></p>
                                             <div class="price-features-wrapper">
                         
                                                 <div class="list-fx-features">
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""><b>@lang('Property Type:') </b></small> <br>
-                                                        <small class="">{{ $item->property_type }} </small>
+                                                        
+                                                        <small class=""><i class="fa-solid fa-house"></i> {{ $item->property_type }} </small>
                                                     </div>
                                                     @php
                                                         $tenant= json_decode($item->tenant_details);
@@ -144,19 +140,17 @@
                                                     
                                                    
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""><b>Monthly Rent </b></small> <br>
-                                                        {{-- <small class="">{{$tenant['monthly_rent']}}</small> --}}
-                                                        <small class="">{{ $tenant->monthly_rent }} {{ $currency->name }}</small>
+                                                        <small class=""><i class="fa-solid fa-money-bill"></i> {{ $tenant->monthly_rent }} {{ $currency->name }}</small>
                                                         
                                                     </div>
                                                     
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""> <b>@lang('Available From')</b></small> <br>
-                                                         <small class="">{{ $tenant->date }}</small>
+                                                        
+                                                         <small class=""><i class="fa-solid fa-calendar-days"></i> {{ $tenant->date }}</small>
                                                     </div>
                                                     <div class="listing-card-info-icon">
-                                                        <small class=""><b>Bedroom:</b></small> <br>
-                                                        <small class="">{{ $item->bedroom }}</small>
+                                                       
+                                                        <small class=""> <i class="fa-solid fa-bed"></i> {{ $item->bedroom }} Beds</small>
                                                     </div>
                                                 </div> 
                                                 

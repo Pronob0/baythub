@@ -39,17 +39,14 @@
                                 <!-- Basic Information -->
                                 <div class="form-submit">
 
-                                    <h3>@lang('Job Information')</h3>
-                                    <div class="submit-section">
+                                    <h3><b> @lang('Post your job')</b></h3>
+                                    <div class="submit-section mt-5">
                                         <div class="form-row">
                                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                            <div class="form-group col-md-6">
-                                                <label>Job Title<a href="#" class="" data-tip="Job Title"></a></label>
-                                                <input type="text" class="form-control" name="title" placeholder="Enter Title">
-                                            </div>
+                                            
 
                                             <div class="form-group col-md-6">
-                                                <label>@lang('Select Category')</label>
+                                                <label>@lang('What kind of work do you need done?')</label>
                                                 <select id="ptypes" class="form-control" name="category_id" required>
                                                     <option value="">Select Category</option>
                                                     @foreach ($categories as $category)
@@ -58,6 +55,16 @@
 
                                                 </select>
                                             </div>
+                                            
+                                            
+                                            
+                                            
+                                            <div class="form-group col-md-6">
+                                                <label>Give your job title<a href="#" class="" data-tip="Job Title"></a></label>
+                                                <input type="text" class="form-control" name="title" placeholder="Enter Title">
+                                            </div>
+
+                                            
 
                                             {{-- select photo  --}}
                                             
@@ -68,7 +75,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label>@lang('Select City')</label>
+                                                <label>@lang('Your job Location')  <small>(city)</small></label>
                                                 <select class="js-example-basic-single" name="city_id">
                                                     <option value="">Select a City</option>
                                                     @foreach ($cities as $city)
@@ -80,7 +87,7 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label>@lang('Select Town ')</label>
+                                                <label>@lang('Your job Location')  <small>(town)</small></label>
                                                 
                                                     <select id="towns" class="" name="town_id">
                                                        
@@ -91,7 +98,7 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label><b>@lang('Postcode')</b></label>
+                                                <label>@lang('Your job Location')  <small>(postcode)</small></label>
                                                 <input  type="text" class="form-control" placeholder="Postcode" name="postcode" >
                                             </div>
                                             
@@ -99,18 +106,27 @@
         
                                             {{-- start_date --}}
                                             <div class="form-group col-md-6">
-                                                <label><b>@lang('Start Date')</b></label>
+                                                <label>@lang('When do you need this done ?') <small>(optional)</small></label>
                                                 <input  type="date" class="form-control" placeholder="Start Date" name="start_date" >
                                             </div>
 
                                         </div>
                                     </div>
-                                    <!-- Location -->
+                                    
+
+                                    <div class="form-group col-lg-12 col-md-12 mt-3">
+                                        <label><b>@lang('Tell us about your job')</b></label>
+                                        <textarea class="form-control" id="textarea" name="description" rows="5">Include any details you think the tradesperson should know (property age, timeframe, etc.)</textarea>
+                                    </div>
                                     {{-- attributes --}}
                                     <div class="form-group col-md-12">
                                     <div class="upload__box">
                                         <div class="upload__btn-box">
-                                            <h6>Drag a photo here, or click "Add Photos" to select your photos</h6>
+                                            <h6>Add Photos
+                                                <a  type="button"  data-toggle="tooltip" data-placement="left" title="A picture is worth a thousand words. Including photos of the work you need done  helps our tradespeople provide more accurate quotes.">
+                                                    <i class="fa fa-info-circle" aria-hidden="true"></i> 
+                                                </a>
+                                            </h6>
                                           <label class="upload__btn">
                                            
                                             <p>Upload images</p>
@@ -120,13 +136,7 @@
                                         <div class="upload__img-wrap"></div>
                                       </div> 
                                     </div>
-                                   
-                                    
-
-                                    <div class="form-group col-lg-12 col-md-12">
-                                        <textarea class="form-control" id="textarea" name="description" rows="5"></textarea>
-                                    </div>
-
+                                
                                     <div class="form-group col-lg-12 col-md-12">
                                         <button class="btn btn-theme" type="submit">Submit & Preview</button>
                                     </div>
